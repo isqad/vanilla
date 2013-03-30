@@ -1,0 +1,12 @@
+"use strict";
+
+
+appModule.config(function ($routeProvider) {
+  $routeProvider
+    .when("/home", { templateUrl: "<%= asset_path 'home.html' %>", controller: "HomeCtrl" })
+    .when("/notify", { templateUrl: "<%= asset_path 'notify.html' %>" })
+    .when("/messages", { templateUrl: "<%= asset_path 'messages.html' %>" })
+    .when("/profile", {templateUrl: "<%= asset_path 'profile.html' %>", controller: "ProfileCtrl"})
+    .when("/profile/edit", { templateUrl: "<%= asset_path 'profile_edit.html' %>", controller: "ProfileEditCtrl"})
+    .otherwise({ redirectTo: "/home" });
+});

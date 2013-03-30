@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require ./angular/angular
+//= require ./angular/angular-resource
+//= require ./jquery-timeago
+//= require bootstrap-collapse
+//= require bootstrap-dropdown
+//= require bootstrap-alert
+//= require_self

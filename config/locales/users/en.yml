@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: 'User'
+        other: 'Users'
+    attributes:
+      user:
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        remember_me: 'Remember me'
+  users:
+    sign_up: 'Sign up'
+    sign_in: 'Sign in'
+    sign_out: 'Logout'

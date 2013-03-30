@@ -1,0 +1,35 @@
+// Place all the styles related to the Profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap/variables";
+
+.user-info {
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+
+  .info {
+    text-align: left;
+  }
+
+  a.user-link {
+    display: block;
+    width: 200px;
+    color: $textColor;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+form.user-status {
+  display: block;
+  textarea.status-message {
+    width: 860px;
+  }
+  .actions {
+    text-align: right;
+  }
+  margin-bottom: 20px;
+}

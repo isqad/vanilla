@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    models:
+      profile: 'Profile'
+  attributes:
+    profile:
+      gender: 'Gender'
+      age: 'Age'
+      birthday: 'Birthday'
+      first_name: 'First name'
+      last_name: 'Last name'
+      bio: 'Bio'
+      updated_at: 'Last updated at'
+  profiles:
+    gender:
+      male: 'Male'
+      female: 'Female'

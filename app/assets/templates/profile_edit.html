@@ -1,0 +1,58 @@
+<h3>Edit profile</h3>
+
+<div class="row">
+  <div class="span3"></div>
+  <div class="span9">
+    <form name="profileForm" class="form-horizontal" ng-submit="save()">
+      <div class="control-group">
+        <label class="control-label" for="inputFirstName">First name</label>
+        <div class="controls">
+          <input type="text" ng-model="current_user.first_name" id="inputFirstName" placeholder="Your first name...">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputLastName">Last name</label>
+        <div class="controls">
+          <input type="text" ng-model="current_user.last_name" id="inputLastName" placeholder="Your last name...">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputBirthday">Birthday</label>
+        <div class="controls">
+          <input type="text" ng-model="current_user.birthday" id="inputBirthday" placeholder="Your birthday...">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="inputBio">Bio</label>
+        <div class="controls">
+          <textarea ng-model="current_user.bio" id="inputBio" placeholder="About..." class="input-xxlarge" rows="4"></textarea>
+        </div>
+      </div>
+
+      <div style="padding-left:180px;">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+
+    <form name="profilePhoto" class="form-horizontal">
+
+      <h4>Change your photo</h4>
+      <div class="control-group">
+        <label class="control-label" for="fileupload">
+          <img ng-src="{{current_user.avatar.medium}}">
+        </label>
+        <div class="controls">
+          <input id="fileupload" type="file" name="photo" data-url="/photos">
+
+          <div class="progress" style="display:none;" id="progressupload">
+            <div class="bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

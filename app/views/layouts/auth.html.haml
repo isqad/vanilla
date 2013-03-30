@@ -1,0 +1,27 @@
+!!! 5
+%html{lang: I18n.locale}
+  %head
+    %meta{charset: 'utf-8'}
+    %title
+      Dating
+    = stylesheet_link_tag :application
+    = csrf_meta_tag
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          -# %a.btn.btn-navbar{data: { toggle: 'collapse', target: '.nav-collapse' } }
+          -#  %span.icon-bar
+          -#  %span.icon-bar
+          -#  %span.icon-bar
+          %a.brand{ href: root_path } Vanilla
+
+          -#.nav-collapse.collapse
+          -#  %ul.nav
+          -#    %li= link_to t('users.sign_in'), root_path
+          -#    %li= link_to t('users.sign_up'), new_user_registration_path
+    .container
+      = render 'shared/notice', notice: notice if notice
+      = render 'shared/alert', alert: alert if alert
+      .row= yield
+    = javascript_include_tag :application
