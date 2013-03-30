@@ -1,7 +1,9 @@
 en:
   activerecord:
     models:
-      profile: 'Profile'
+      profile:
+        one: 'Profile'
+        other: 'Profiles'
   attributes:
     profile:
       gender: 'Gender'

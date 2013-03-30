@@ -40,13 +40,28 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
+  embeds_one :profile
+
   validates :nickname, presence: true, length: { in: 3..15 }
+
+  delegate :first_name, :last_name, :bio, :birthday, :gender,
+           :first_name=, :last_name=, :bio=, :birthday=, :gender=,
+           to: :profile
+
+  #accepts_nested_attributes_for :profile
 
   acts_as_api
   api_accessible :angular do |t|
     t.add :id
     t.add :email
     t.add :nickname
+  end
+
+  def initialize(params={}, options=nil)
+    profile_set = params.has_key?(:profile) || params.has_key?('profile')
+    params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
+    super
+    self.profile ||= Profile.new unless profile_set
   end
 
 end
