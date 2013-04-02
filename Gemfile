@@ -14,6 +14,11 @@ gem 'simple_form', '~> 2.1.0'
 # HAML
 gem 'haml-rails', '~> 0.3.5'
 
+# Files Uploading
+gem 'mini_magick', '~> 3.5.0'
+gem 'carrierwave', '~> 0.8.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 # API
 gem 'acts_as_api', '~> 0.4.1'
 

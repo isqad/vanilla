@@ -17,10 +17,6 @@ appModule.controller("ProfileEditCtrl", function ($scope, $http) {
       profile: $scope.current_user
     }).success(function (response) {
       $(document).flash_message({text: "Profile was updated"});
-
-      $scope.$apply(function () {
-        $scope.current_user.age = response.age;
-      });
     });
   };
 
@@ -39,9 +35,9 @@ appModule.controller("ProfileEditCtrl", function ($scope, $http) {
         data = data.result.data;
 
         var avatar = {
-          small: data.unprocessed_image.thumb_small.url,
-          medium: data.unprocessed_image.thumb_medium.url,
-          large: data.unprocessed_image.thumb_large.url
+          small: data.image.thumb_small.url,
+          medium: data.image.thumb_medium.url,
+          large: data.image.thumb_large.url
         };
 
         $scope.$apply(function () {

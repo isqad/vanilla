@@ -60,4 +60,25 @@ describe User do
     user.nickname.should eql(attrs[:nickname])
   end
 
+  describe '.friend_status_of' do
+
+    let!(:friend) { FactoryGirl.create(:user) }
+    before(:each) { user.save! }
+
+    it 'should return pending if in pending friend list' do
+      user.friendships.create!(friend: friend)
+
+      user.friend_status_of(friend).should eql('pending')
+    end
+
+    it 'should return nil if not friend list' do
+      user.friend_status_of(friend).should be_nil
+    end
+
+    it 'should return friend if in friend list' do
+      user.friendships.create!(friend: friend, pending: false)
+      user.friend_status_of(friend).should eql('friend')
+    end
+   end
+
 end

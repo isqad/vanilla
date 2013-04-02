@@ -41,20 +41,37 @@ class User
   # field :authentication_token, :type => String
 
   embeds_one :profile
+  has_many :photos
+  has_many :friendships, inverse_of: :owner
 
   validates :nickname, presence: true, length: { in: 3..15 }
 
-  delegate :first_name, :last_name, :bio, :birthday, :gender,
+  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender,
            :first_name=, :last_name=, :bio=, :birthday=, :gender=,
            to: :profile
-
-  #accepts_nested_attributes_for :profile
 
   acts_as_api
   api_accessible :angular do |t|
     t.add :id
     t.add :email
     t.add :nickname
+    t.add :first_name
+    t.add :last_name
+    t.add :bio
+    t.add :birthday
+    t.add :gender
+    t.add lambda { |user|
+      {
+        small: user.image_url(:thumb_small),
+        medium: user.image_url(:thumb_medium),
+        large: user.image_url(:thumb_large)
+      }
+    }, as: :avatar
+  end
+
+  api_accessible :as_user, extend: :angular do |t|
+    t.remove :email
+    t.remove :birthday
   end
 
   def initialize(params={}, options=nil)
@@ -62,6 +79,11 @@ class User
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super
     self.profile ||= Profile.new unless profile_set
+  end
+
+  def friend_status_of(user)
+    friendship = self.friendships.where(friend: user).first
+    friendship.present? ? (friendship.pending? ? 'pending' : 'friend') : nil
   end
 
 end

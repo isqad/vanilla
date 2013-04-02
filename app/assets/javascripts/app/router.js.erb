@@ -8,5 +8,6 @@ appModule.config(function ($routeProvider) {
     .when("/messages", { templateUrl: "<%= asset_path 'messages.html' %>" })
     .when("/profile", {templateUrl: "<%= asset_path 'profile.html' %>", controller: "ProfileCtrl"})
     .when("/profile/edit", { templateUrl: "<%= asset_path 'profile_edit.html' %>", controller: "ProfileEditCtrl"})
+    .when("/u/:user_id", { templateUrl: "<%= asset_path 'user.html' %>", controller: "UserCtrl"})
     .otherwise({ redirectTo: "/home" });
 });
