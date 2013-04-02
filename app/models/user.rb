@@ -43,6 +43,7 @@ class User
   embeds_one :profile
   has_many :photos
   has_many :friendships, inverse_of: :owner
+  has_many :posts, inverse_of: :author, dependent: :destroy
 
   validates :nickname, presence: true, length: { in: 3..15 }
 
@@ -67,9 +68,11 @@ class User
         large: user.image_url(:thumb_large)
       }
     }, as: :avatar
+    t.add :name
+    t.add :fullname
   end
 
-  api_accessible :as_user, extend: :angular do |t|
+  api_accessible :user, extend: :angular do |t|
     t.remove :email
     t.remove :birthday
   end
@@ -79,6 +82,22 @@ class User
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super
     self.profile ||= Profile.new unless profile_set
+  end
+
+  def name
+    if self.first_name || self.last_name
+      "#{self.first_name} #{self.last_name}"
+    else
+      self.nickname
+    end
+  end
+
+  def fullname
+    if self.first_name || self.last_name
+      "#{self.first_name} #{self.nickname} #{self.last_name}"
+    else
+      self.nickname
+    end
   end
 
   def friend_status_of(user)

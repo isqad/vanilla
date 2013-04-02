@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class Api::PhotosController < ApiController
 
   before_filter :authenticate_user!
 
@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
         #post.save!
       end
 
-      render layout: false, json: { success: true, data: @photo }.to_json
+      respond_with @photo, api_template: :angular, location: api_photo_url(@photo)
     else
       render nothing: true, status: 422
     end

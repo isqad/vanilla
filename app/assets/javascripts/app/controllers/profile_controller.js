@@ -13,7 +13,7 @@ appModule.controller("ProfileEditCtrl", function ($scope, $http) {
   });*/
 
   $scope.save = function () {
-    $http.put("/profile.json", {
+    $http.put("/api/profile.json", {
       profile: $scope.current_user
     }).success(function (response) {
       $(document).flash_message({text: "Profile was updated"});
@@ -30,15 +30,17 @@ appModule.controller("ProfileEditCtrl", function ($scope, $http) {
         "set_profile_photo": true
       },
       done: function (event, data) {
-        $("#progressupload").hide();
+        var img, avatar;
 
-        data = data.result.data;
+        img = data.result.image;
 
-        var avatar = {
-          small: data.image.thumb_small.url,
-          medium: data.image.thumb_medium.url,
-          large: data.image.thumb_large.url
+        avatar = {
+          small: img.small,
+          medium: img.medium,
+          large: img.large
         };
+
+        $("#progressupload").hide();
 
         $scope.$apply(function () {
           $scope.current_user.avatar = avatar;

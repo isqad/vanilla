@@ -13,11 +13,15 @@ Vanilla::Application.routes.draw do
                  sign_up: 'register'
              }
 
-  resources :photos, only: [ :create ]
+  namespace :api do
+    resources :photos, only: [ :create, :show ], defaults: { format: :json }
 
-  resource :profile, only: [ :show, :update ]
+    resource :profile, only: [ :show, :update ], defaults: { format: :json }
 
-  resources :users, only: [ :show ]
+    resources :users, only: [ :show ], defaults: { format: :json } do
+      resources :posts, only: [ :index ], defaults: { format: :json }
+    end
+  end
 
   root to: 'pages#home'
 

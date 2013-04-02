@@ -9,13 +9,17 @@
   margin: 0 auto;
   text-align: center;
 
+  .avatar, .info {
+    margin-bottom: 20px;
+  }
+
   .info {
     text-align: left;
+    margin-bottom: 20px;
   }
 
   a.user-link {
     display: block;
-    width: 200px;
     color: $textColor;
     vertical-align: top;
     &:hover {

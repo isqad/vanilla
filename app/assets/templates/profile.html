@@ -1,18 +1,22 @@
 <div class="row">
   <div class="span3">
     <div class="user-info">
-      <img ng-src="{{current_user.avatar.medium}}">
-      <div class="info">
+      <div class="avatar">
+        <img ng-src="{{current_user.avatar.medium}}">
+      </div>
+
+      <div class="info" ng-show="current_user.bio.length">
         <h2>About</h2>
         <p>{{current_user.bio}}</p>
       </div>
+
     </div>
   </div>
   <div class="span9">
     <div class="clearfix">
       <div class="user-name pull-left">
         <h1>
-          {{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}
+          {{current_user.fullname}}
         </h1>
       </div>
       <div class="pull-right">

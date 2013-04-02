@@ -11,7 +11,7 @@ class Photo
   validates :image, presence: true
 
   acts_as_api
-  api_accessible :for_post do |t|
+  api_accessible :angular do |t|
     t.add :id
     t.add lambda { |photo|
       {
@@ -20,7 +20,6 @@ class Photo
         large: photo.url(:thumb_large)
       }
     }, as: :image
-    t.add :created_at
   end
 
   def url(size = :thumb_medium)
