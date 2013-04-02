@@ -59,7 +59,7 @@ class User
     t.add :first_name
     t.add :last_name
     t.add :bio
-    t.add :birthday
+    t.add lambda { |user| user.birthday ? I18n.l(user.birthday) : nil }, as: :birthday
     t.add :gender
     t.add lambda { |user|
       {
@@ -85,7 +85,7 @@ class User
   end
 
   def name
-    if self.first_name || self.last_name
+    if self.first_name.to_s != '' || self.last_name.to_s != ''
       "#{self.first_name} #{self.last_name}"
     else
       self.nickname
@@ -93,7 +93,7 @@ class User
   end
 
   def fullname
-    if self.first_name || self.last_name
+    if self.first_name.to_s != '' || self.last_name.to_s != ''
       "#{self.first_name} #{self.nickname} #{self.last_name}"
     else
       self.nickname

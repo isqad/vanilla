@@ -5,12 +5,8 @@ appModule.controller("ProfileCtrl", function ($scope) {
 });
 
 appModule.controller("ProfileEditCtrl", function ($scope, $http) {
-  /*$("#inputBirthday").datepicker({
-    dateFormat: "dd-mm-yy",
-    yearRange: "1950:1999",
-    changeYear: true,
-    changeMonth: true
-  });*/
+
+  $scope.dateOptions = { format: "dd-mm-yyyy" };
 
   $scope.save = function () {
     $http.put("/api/profile.json", {

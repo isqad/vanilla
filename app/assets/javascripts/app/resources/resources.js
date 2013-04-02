@@ -8,4 +8,9 @@ angular.module("vanila.resources", ["ngResource"])
     return $resource("/api/users/:user_id/posts.json", {}, {
       "query": {method: "GET", isArray: true}
     });
+  })
+  .factory("Search", function ($resource) {
+    return $resource("/api/search.json", {}, {
+      "query": { method: "GET", isArray: true }
+    });
   });

@@ -9,5 +9,6 @@ appModule.config(function ($routeProvider) {
     .when("/profile", {templateUrl: "<%= asset_path 'profile.html' %>", controller: "ProfileCtrl"})
     .when("/profile/edit", { templateUrl: "<%= asset_path 'profile_edit.html' %>", controller: "ProfileEditCtrl"})
     .when("/u/:user_id", { templateUrl: "<%= asset_path 'user.html' %>", controller: "UserCtrl"})
+    .when("/search", { templateUrl: "<%= asset_path 'search.html' %>", controller: "SearchCtrl"})
     .otherwise({ redirectTo: "/home" });
 });
