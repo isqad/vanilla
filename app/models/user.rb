@@ -51,6 +51,8 @@ class User
            :first_name=, :last_name=, :bio=, :birthday=, :gender=,
            to: :profile
 
+  attr_accessor :friend
+
   acts_as_api
   api_accessible :angular do |t|
     t.add :id
@@ -68,8 +70,7 @@ class User
         large: user.image_url(:thumb_large)
       }
     }, as: :avatar
-    t.add :name
-    t.add :fullname
+    t.add lambda { |user| user.friend.present? ? user.friend : false }, as: :friend
   end
 
   api_accessible :user, extend: :angular do |t|
@@ -84,25 +85,9 @@ class User
     self.profile ||= Profile.new unless profile_set
   end
 
-  def name
-    if self.first_name.to_s != '' || self.last_name.to_s != ''
-      "#{self.first_name} #{self.last_name}"
-    else
-      self.nickname
-    end
-  end
-
-  def fullname
-    if self.first_name.to_s != '' || self.last_name.to_s != ''
-      "#{self.first_name} #{self.nickname} #{self.last_name}"
-    else
-      self.nickname
-    end
-  end
-
   def friend_status_of(user)
     friendship = self.friendships.where(friend: user).first
-    friendship.present? ? (friendship.pending? ? 'pending' : 'friend') : nil
+    friendship.present? ? (friendship.pending? ? 'pending' : 'friend') : false
   end
 
 end

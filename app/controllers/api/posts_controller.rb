@@ -8,6 +8,13 @@ class Api::PostsController < ApiController
   end
 
   def create
+    @post = Post.new(params[:post].except(:author_id).merge(author: current_user))
+
+    if @post.save
+      respond_with @post, api_template: :angular, location: nil
+    else
+      render nothing: true, status: 422
+    end
   end
 
   private

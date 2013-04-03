@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="span3">
+  <div class="span4">
     <div class="user-info">
       <a href="/#!/profile" class="user-link">
         <img ng-src="{{current_user.avatar.small}}">
-        {{current_user.name}}
+        {{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}
       </a>
     </div>
   </div>
-  <div class="span9">
+  <div class="span8">
     <h2>Stream</h2>
 
     <form name="postForm" ng-submit="sendStatus()" class="user-status">
@@ -20,7 +20,21 @@
 
     <div ng-repeat="post in posts">
       <div class="stream-post">
-        <div class="datestamp">{{post.created_at | timeAgo}}</div>
+        <div class="user-avatar" ng-switch on="post.author.id == current_user.id">
+          <a href="/#!/profile" ng-switch-when="true">
+            <img ng-src="{{post.author.avatar.small}}">
+          </a>
+          <a href="/#!/u/{{post.author.id}}" ng-switch-default>
+            <img ng-src="{{post.author.avatar.small}}">
+          </a>
+        </div>
+
+        <span class="post-info" ng-switch on="post.author.id == current_user.id">
+          <a href="/#!/profile" ng-switch-when="true">{{post.author.name}}</a>
+          <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{post.author.name}}</a>
+        </span>
+        <span class="datestamp">{{post.created_at | timeAgo}}</span>
+
         <div class="text">
           {{post.body}}
         </div>

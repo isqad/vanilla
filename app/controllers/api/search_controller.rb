@@ -15,6 +15,11 @@ class Api::SearchController < ApiController
       'nickname' => criteria
     })
 
+    @users.map do |u|
+      u.friend = u.friend_status_of(current_user)
+      u
+    end
+
     respond_with @users, api_template: :user
   end
 

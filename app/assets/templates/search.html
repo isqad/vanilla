@@ -3,7 +3,7 @@
     <div class="user-info">
       <a href="/#!/profile" class="user-link">
         <img ng-src="{{current_user.avatar.small}}">
-        {{current_user.name}}
+        {{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}
       </a>
     </div>
   </div>
@@ -15,7 +15,7 @@
         <img ng-src="{{result.avatar.small}}">
       </div>
       <div class="user-name">
-        <a href="/#!/u/{{result.id}}">{{result.fullname}}</a>
+        <a href="/#!/u/{{result.id}}">{{result.first_name}} {{result.nickname}} {{result.last_name}}</a>
       </div>
       <div class="user-info"></div>
     </div>

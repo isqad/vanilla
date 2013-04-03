@@ -22,6 +22,8 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 # API
 gem 'acts_as_api', '~> 0.4.1'
 
+gem 'draper', '~> 1.0'
+
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
