@@ -28,6 +28,7 @@ gem 'faye', '~> 0.8.9'
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
+  gem 'rails_best_practices'
 end
 
 group :test, :development do

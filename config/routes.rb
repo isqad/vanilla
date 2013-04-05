@@ -14,7 +14,7 @@ Vanilla::Application.routes.draw do
              }
 
   namespace :api do
-    resources :photos, only: [ :create, :show ], defaults: { format: :json }
+    resources :photos, only: [ :create ], defaults: { format: :json }
 
     resource :profile, only: [ :show, :update ], defaults: { format: :json }
 
