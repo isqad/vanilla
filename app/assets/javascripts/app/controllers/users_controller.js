@@ -10,4 +10,11 @@ appModule.controller("UserCtrl", function ($scope, $routeParams, User, Friendshi
       Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});
     });
   };
+
+  $scope.approveToFriends = function () {
+    Friendship.save({user_id: $scope.user.id}, {status: 'approve'}, function (response) {
+      $scope.user.friend = 'friend';
+      Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});
+    });
+  };
 });

@@ -26,6 +26,8 @@
                 = link_to '/#!/notify' do
                   %i.icon-globe
                   Notify
+                  %span.badge.badge-success{:'ng-show' => 'notifySize > 0'}
+                    {{notifySize}}
 
 
             %ul.nav.pull-right

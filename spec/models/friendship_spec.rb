@@ -31,4 +31,21 @@ describe Friendship do
   it 'should reject given self' do
     user.friendships.build(friend: user).should_not be_valid
   end
+
+  it 'should approve to both sides' do
+    user.friendships.create!(friend: friend)
+
+    friend.friendships(true)[0].update_attributes!(status: 'friend')
+
+    friend.friendships(true)[0].status.should eql('friend')
+    user.friendships(true)[0].status.should eql('friend')
+  end
+
+  it 'should destroy to both sides' do
+    user.friendships.create!(friend: friend)
+
+    expect {
+      friend.friendships(true)[0].destroy
+    }.to change{Friendship.count}.from(2).to(0)
+  end
 end

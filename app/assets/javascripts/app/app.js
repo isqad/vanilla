@@ -14,6 +14,14 @@ appModule.config(function ($httpProvider) {
 
 // Global parameters
 appModule.run(function ($rootScope, Profile, Socket) {
+  $rootScope.notifySize = 0;
   // Get current user to global scope
-  $rootScope.current_user = Profile.get();
+  $rootScope.current_user = Profile.get({}, function (response) {
+    // subscribe to friends notify channel
+    Socket.subscribe("/friends/notify/" + $rootScope.current_user.id, function (data) {
+      $rootScope.notifySize += 1;
+    });
+  });
+
+
 });
