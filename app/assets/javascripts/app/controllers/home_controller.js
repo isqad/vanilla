@@ -11,6 +11,10 @@ appModule.controller("HomeCtrl", function ($scope, Post) {
       $scope.status_message.body = "";
       $scope.posts.unshift(response);
     });
-  };
+  };/*
+
+  Socket.subscribe("/friends/notify/" + $scope.current_user.id, function (data) {
+    console.log(data);
+  });*/
 
 });

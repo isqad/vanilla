@@ -20,6 +20,7 @@ Vanilla::Application.routes.draw do
 
     resources :users, only: [ :show ], defaults: { format: :json } do
       resources :posts, only: [ :index, :create ], defaults: { format: :json }
+      resource :friendship, only: [ :show, :create, :update, :destroy ], defaults: { format: :json }
     end
 
     resource :search, only: [ :show ], controller: 'search', defaults: { format: :json }

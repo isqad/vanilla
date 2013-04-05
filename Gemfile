@@ -22,7 +22,8 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 # API
 gem 'acts_as_api', '~> 0.4.1'
 
-gem 'draper', '~> 1.0'
+gem 'thin', '~> 1.5.1'
+gem 'faye', '~> 0.8.9'
 
 group :development do
   gem 'better_errors', '~> 0.7.2'

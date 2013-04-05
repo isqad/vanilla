@@ -1,0 +1,10 @@
+en:
+  mongoid:
+    errors:
+      messages:
+        can_not_to_add_self_to_friend_list: 'Can not to add self to friend list'
+      models:
+        friendship:
+          attributes:
+            friend:
+              can_not_to_add_self_to_friend_list: 'Can not to add self to friend list'

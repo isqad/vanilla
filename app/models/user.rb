@@ -87,7 +87,7 @@ class User
 
   def friend_status_of(user)
     friendship = self.friendships.where(friend: user).first
-    friendship.present? ? (friendship.pending? ? 'pending' : 'friend') : false
+    friendship.present? ? friendship.status : false
   end
 
 end

@@ -71,12 +71,12 @@ describe User do
       user.friend_status_of(friend).should eql('pending')
     end
 
-    it 'should return nil if not friend list' do
-      user.friend_status_of(friend).should be_nil
+    it 'should return false if not friend list' do
+      user.friend_status_of(friend).should eql(false)
     end
 
     it 'should return friend if in friend list' do
-      user.friendships.create!(friend: friend, pending: false)
+      user.friendships.create!(friend: friend, status: 'friend')
       user.friend_status_of(friend).should eql('friend')
     end
    end

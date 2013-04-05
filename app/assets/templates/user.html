@@ -15,6 +15,20 @@
           {{user.first_name}} {{user.nickname}} {{user.last_name}}
         </h1>
       </div>
+      <div class="pull-right">
+        <div ng-switch on="user.friend" class="friendStatus">
+          <button type="button" class="friendStatus__add btn btn-success" ng-click="addToFriends()" ng-switch-when="false">
+            <i class="icon icon-plus icon-white"></i>
+            Add to friend list
+          </button>
+          <button type="button" class="friendStatus__approve btn btn-success" ng-click="approveToFriends()" ng-switch-when="waiting">
+            <i class="icon icon-ok icon-white"></i>
+            Approve to be added to friend list
+          </button>
+          <div class="friendStatus__pending" ng-switch-when="pending">Pending to be added to friend list</div>
+          <div class="friendStatus__friends" ng-switch-when="friend">You are friends</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

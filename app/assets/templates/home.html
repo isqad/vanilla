@@ -30,8 +30,8 @@
         </div>
 
         <span class="post-info" ng-switch on="post.author.id == current_user.id">
-          <a href="/#!/profile" ng-switch-when="true">{{post.author.name}}</a>
-          <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{post.author.name}}</a>
+          <a href="/#!/profile" ng-switch-when="true">{{post.author.first_name}} {{post.author.last_name}}</a>
+          <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{post.author.first_name}} {{post.author.last_name}}</a>
         </span>
         <span class="datestamp">{{post.created_at | timeAgo}}</span>
 
