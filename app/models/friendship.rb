@@ -1,40 +1,54 @@
 class Friendship
   include Mongoid::Document
 
+  STATUS = { :pending => 1, :waiting => 2, :friend => 3}.freeze
+
   belongs_to :owner, class_name: 'User'
   belongs_to :friend, class_name: 'User'
-  field :status, type: String, default: 'pending'
+  field :status, type: Integer, default: STATUS[:pending]
+
+  has_one :friendship, inverse_of: :inverseship
+  # Другая сторона связи
+  belongs_to :inverseship, class_name: 'Friendship'
 
   validates :owner, uniqueness: { scope: :friend }
   validate :reject_self
 
-  after_create :wait_status
+  before_create :wait_status
 
-  after_save :friend_status
+  before_save :friend_status
 
-  after_destroy :destroy_both
+  after_destroy :delete_inverseship
+
+  class << self
+    def status
+      STATUS
+    end
+  end
 
   private
+
+  # Создаем на другой стороне связь со статусом ожидания
+  # Только если эта сторона имеет статус pending (не реализована)
+  # После этого сторона, отправившая предложение имеет статус pending
+  # Получатель дружбы имеет связь с этой стороной со статусом waiting
   def wait_status
-    inverseship = Friendship.new(friend: self.owner, owner: self.friend, status: 'waiting')
-    status = inverseship.save
-    self.destroy if !status && inverseship.status == 'waiting' && self.status == 'pending'
+    self.inverseship = Friendship.create(friend: self.owner, owner: self.friend, status: STATUS[:waiting], inverseship: self) if self.status == STATUS[:pending]
   end
 
+  # Статус дружбы
+  # Вторая сторона принимает либо отклоняет дружбу
   def friend_status
-    inverseship = self.friend.friendships.where(friend: self.owner).first
+    inverse = self.friendship
 
-    if inverseship && self.status == 'friend' && inverseship.status == 'pending'
-      inverseship.update_attributes!(status: 'friend')
+    if inverse.present? && inverse.status == STATUS[:pending] && self.status == STATUS[:friend]
+      inverse.update_attributes!(status: STATUS[:friend])
     end
   end
 
-  def destroy_both
-    inverseship = self.friend.friendships.where(friend: self.owner).first
-
-    if inverseship
-      inverseship.destroy
-    end
+  def delete_inverseship
+    inverse = self.friendship
+    inverse.destroy if inverse.present?
   end
 
   def reject_self

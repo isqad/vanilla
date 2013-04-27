@@ -25,17 +25,19 @@ class Api::FriendshipsController < ApiController
 
     render(nothing: true, status: 422) unless @friendship
 
-    if params[:status] == 'approve'
-      if @friendship.update_attributes(status: 'friend')
-        respond_with @friendship, location: nil
+    case params[:status]
+      when 'approve'
+        if @friendship.update_attributes(status: Friendship.status[:friend])
+          respond_with @friendship, location: nil
+        else
+          render nothing: true, status: 422
+        end
+      when 'cancel'
+        @friendship.destroy
+        render nothing: true
       else
         render nothing: true, status: 422
-      end
-    elsif params[:status] == 'cancel'
-      @friendship.destroy
-      render nothing: true, status: 422
     end
-
   end
 
   # Destroy friendship

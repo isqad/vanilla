@@ -68,7 +68,7 @@ describe User do
     it 'should return pending if in pending friend list' do
       user.friendships.create!(friend: friend)
 
-      user.friend_status_of(friend).should eql('pending')
+      user.friend_status_of(friend).should eql(Friendship.status[:pending])
     end
 
     it 'should return false if not friend list' do
@@ -76,8 +76,8 @@ describe User do
     end
 
     it 'should return friend if in friend list' do
-      user.friendships.create!(friend: friend, status: 'friend')
-      user.friend_status_of(friend).should eql('friend')
+      user.friendships.create!(friend: friend, status: Friendship.status[:friend])
+      user.friend_status_of(friend).should eql(Friendship.status[:friend])
     end
    end
 
