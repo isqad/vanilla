@@ -21,8 +21,8 @@ Vanilla is a open source social network.
 ##### Step 1. Git clone and bundle install
 
 ``` bash
-$ git clone https://AndreyShalaev@bitbucket.org/AndreyShalaev/vanilla.git
-$ cd vanilla && bundle install --path vendor/bundle
+$ git clone git://github.com/isqad88/vanilla.git project_folder
+$ cd project_folder && bundle install --path vendor/bundle
 ```
 
 ##### Step 2. Run application
