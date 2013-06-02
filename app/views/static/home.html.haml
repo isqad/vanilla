@@ -1,0 +1,29 @@
+.row
+  .span4
+    .user-info
+      = link_to '/#!/profile', class: 'user-link' do
+        %img{ 'ng-src' => '{{current_user.avatar.small}}' }
+        = '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}'
+  .span8
+    %h2 Stream
+    = form_tag '', name: 'postForm', 'ng-submit' => 'sendStatus()', class: 'user-status' do
+      = text_area_tag '', nil, 'ng-model' => 'status_message.body', 'on-ctrl-enter' => 'sendStatus()', class: 'status-message', placeholder: 'What happened?'
+      .actions
+        = button_tag type: 'submit', class: 'btn btn-success' do
+          Send
+
+    %div{ 'ng-repeat' => 'post in posts' }
+      .stream-post
+        .user-avatar{ 'ng-switch' => '', 'on' => 'post.author.id == current_user.id' }
+          = link_to '/#!/profile', 'ng-switch-when' => 'true' do
+            %img{ 'ng-src' => '{{post.author.avatar.small}}' }
+          = link_to '/#!/u/{{post.author.id}}', 'ng-switch-default' => '' do
+            %img{ 'ng-src' => '{{post.author.avatar.small}}' }
+
+        %span.post-info{ 'ng-switch' => '', 'on' => 'post.author.id == current_user.id' }
+          = link_to '{{post.author.first_name}} {{post.author.last_name}}', '/#!/profile', 'ng-switch-when' => 'true'
+          = link_to '{{post.author.first_name}} {{post.author.last_name}}', '/#!/u/{{post.author.id}}', 'ng-switch-default' => ''
+        %span.datestamp= '{{post.created_at | timeAgo}}'
+        .text= '{{post.body}}'
+        %span{ 'ng-repeat' => 'photo in post.photos' }
+          %img{ 'ng-src' => '{{photo.image.medium}}' }

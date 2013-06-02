@@ -14,5 +14,5 @@ appModule.run ($rootScope, Profile) ->
     #Socket.subscribe("/friends/notify/" + $rootScope.current_user.id, function (data) {
     #  $rootScope.notifySize += 1;
     #});
-  return
+    return
   )

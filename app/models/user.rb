@@ -87,7 +87,10 @@ class User
 
   def friend_status_of(user)
     friendship = self.friendships.where(friend: user).first
-    friendship.present? ? friendship.status : false
+
+    statuses = Friendship.status.keys.map(&:to_s)
+
+    friendship.present? ? statuses[friendship.status] : false
   end
 
 end

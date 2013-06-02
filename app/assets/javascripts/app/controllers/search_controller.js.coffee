@@ -4,4 +4,4 @@ appModule.controller "SearchCtrl", ($scope, $route, $routeParams, Search) ->
   if typeof query isnt "undefined" and query.length > 3
     $scope.results = Search.query
       q: query, (result) ->
-      $scope.search_results = result
+        $scope.search_results = result

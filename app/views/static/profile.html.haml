@@ -1,0 +1,18 @@
+.row
+  .span3
+    .user-info
+      = link_to '/#!/profile', class: 'user-link' do
+        %img{ 'ng-src' => '{{current_user.avatar.medium}}' }
+
+      .info{ 'ng-show' => 'current_user.bio.length' }
+        %h2 About
+        = '{{current_user.bio}}'
+
+  .span9
+    .clearfix
+      .user-name.pull-left
+        %h1= '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}'
+      .pull-right
+        = link_to '/#!/profile/edit', class: 'btn btn-success' do
+          %i.icon.icon-edit.icon-white
+          Edit profile

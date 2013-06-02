@@ -26,6 +26,8 @@ Vanilla::Application.routes.draw do
     resource :search, only: [ :show ], controller: 'search', defaults: { format: :json }
   end
 
+  match 'static/:action', controller: 'static', defaults: { format: :html }
+
   root to: 'pages#home'
 
 end

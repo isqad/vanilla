@@ -1,0 +1,42 @@
+%h3 Edit profile
+
+.row
+  .span3
+  .span9
+    = form_tag '', name: 'profileForm', class: 'form-horizontal', 'ng-submit' => 'save()' do
+      .control-group
+        = label_tag 'inputFirstName', 'First name', class: 'control-label'
+        .controls
+          = text_field_tag 'inputFirstName', nil, placeholder: 'Your first name...', 'ng-model' => 'current_user.first_name'
+
+      .control-group
+        = label_tag 'inputLastName', 'Last name', class: 'control-label'
+        .controls
+          = text_field_tag 'inputLastName', nil, placeholder: 'Your last name...', 'ng-model' => 'current_user.last_name'
+
+      .control-group
+        = label_tag 'inputBirthday', 'Birthday', class: 'control-label'
+        .controls
+          = text_field_tag 'inputBirthday', nil, placeholder: 'Your birthday...', 'ng-model' => 'current_user.birthday', 'b-datepicker' => '{{dateOptions}}'
+
+      .control-group
+        = label_tag 'inputBio', 'Last name', class: 'control-label'
+        .controls
+          = text_area_tag 'inputBio', nil, class: 'input-xxlarge', rows: 4, placeholder: 'About...', 'ng-model' => 'current_user.bio'
+
+      %div{ style: 'padding-left:180px;' }
+        = button_tag type: 'submit', class: 'btn btn-primary' do
+          Save
+
+    = form_tag '', name: 'profilePhoto', class: 'form-horizontal' do
+      %h4 Change your photo
+
+      .control-group
+        = label_tag 'photo', class: 'control-label' do
+          %img{ 'ng-src' => '{{current_user.avatar.medium}}' }
+        .controls
+          = file_field_tag 'photo', id: 'fileupload', data: { url: '/api/photos' }
+          #progressupload.progress{ style: 'display:none;' }
+            .bar{ style: 'width: 0%;' }
+
+

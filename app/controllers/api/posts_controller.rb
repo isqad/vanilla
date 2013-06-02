@@ -1,6 +1,6 @@
 class Api::PostsController < ApiController
 
-  before_filter :authenticate_user!, :find_user
+  before_filter :find_user
 
   def index
     @posts = @user.posts

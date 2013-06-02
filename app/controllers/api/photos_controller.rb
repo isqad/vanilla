@@ -1,7 +1,5 @@
 class Api::PhotosController < ApiController
 
-  before_filter :authenticate_user!
-
   def create
     @photo = current_user.photos.build(image: params[:photo])
 

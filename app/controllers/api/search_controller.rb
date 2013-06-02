@@ -1,7 +1,5 @@
 class Api::SearchController < ApiController
 
-  before_filter :authenticate_user!
-
   def show
     query = params[:q]
 

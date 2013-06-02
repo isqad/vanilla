@@ -1,7 +1,7 @@
 class Friendship
   include Mongoid::Document
 
-  STATUS = { :pending => 1, :waiting => 2, :friend => 3}.freeze
+  STATUS = { :pending => 0, :waiting => 1, :friend => 2}.freeze
 
   belongs_to :owner, class_name: 'User'
   belongs_to :friend, class_name: 'User'

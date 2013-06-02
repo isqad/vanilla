@@ -7,13 +7,13 @@ appModule.controller "UserCtrl", ($scope, $routeParams, User, Friendship) ->
       user_id: $scope.user.id
     , {}
     , (response) ->
-      $scope.user.friend = "pending"
-  #Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});
+        $scope.user.friend = "pending"
+        #Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});
 
   $scope.approveToFriends = () ->
     Friendship.save
       user_id: $scope.user.id
     ,
       status: 'approve', (response) ->
-      $scope.user.friend = "friend"
-#Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});
+        $scope.user.friend = "friend"
+        #Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});

@@ -1,7 +1,5 @@
 class Api::FriendshipsController < ApiController
 
-  before_filter :authenticate_user!
-
   # Friend list
   def show
   end

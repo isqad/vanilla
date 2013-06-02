@@ -1,5 +1,5 @@
 appModule.controller "ProfileCtrl", ($scope) ->
-return
+  return
 
 appModule.controller "ProfileEditCtrl", ($scope, $http) ->
   $scope.dateOptions =
