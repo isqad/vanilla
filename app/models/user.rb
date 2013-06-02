@@ -41,13 +41,14 @@ class User
   # field :authentication_token, :type => String
 
   embeds_one :profile
-  has_many :photos
-  has_many :friendships, inverse_of: :owner
+  has_many :photos, dependent: :destroy
+  has_many :friendships, inverse_of: :owner, dependent: :destroy
   has_many :posts, inverse_of: :author, dependent: :destroy
+  has_many :notifications, inverse_of: :user, dependent: :destroy
 
   validates :nickname, presence: true, length: { in: 3..15 }
 
-  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender,
+  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender, :fullname,
            :first_name=, :last_name=, :bio=, :birthday=, :gender=,
            to: :profile
 

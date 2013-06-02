@@ -40,4 +40,8 @@ class Profile
                       }
     self.update_attributes!(profile_params)
   end
+
+  def fullname
+    "#{first_name} #{last_name}"
+  end
 end

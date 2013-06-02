@@ -33,7 +33,17 @@ class Friendship
   # После этого сторона, отправившая предложение имеет статус pending
   # Получатель дружбы имеет связь с этой стороной со статусом waiting
   def wait_status
-    self.inverseship = Friendship.create(friend: self.owner, owner: self.friend, status: STATUS[:waiting], inverseship: self) if self.status == STATUS[:pending]
+    if self.status == STATUS[:pending]
+      self.inverseship = Friendship.create(friend: self.owner, owner: self.friend, status: STATUS[:waiting], inverseship: self)
+
+      if self.inverseship
+        notification = Notification.new
+        notification.from = self.owner
+        notification.user = self.friend
+        notification.notify = Notification.friend_add(self.owner)
+        notification.save!
+      end
+    end
   end
 
   # Статус дружбы
@@ -42,7 +52,13 @@ class Friendship
     inverse = self.friendship
 
     if inverse.present? && inverse.status == STATUS[:pending] && self.status == STATUS[:friend]
-      inverse.update_attributes!(status: STATUS[:friend])
+      if inverse.update_attributes(status: STATUS[:friend])
+        notification = Notification.new
+        notification.from = self.owner
+        notification.user = self.friend
+        notification.notify = Notification.friend_approve(self.owner)
+        notification.save!
+      end
     end
   end
 

@@ -7,6 +7,7 @@ appModule.config ($routeProvider) ->
   ).when("/notify",
 
     templateUrl: "/static/notify"
+    controller: "NotifyCtrl"
 
   ).when("/messages",
 

@@ -1,1 +1,12 @@
-%h1 Hello, I am notify template!
+%h1 Notifications
+
+.notifications{ 'ng-repeat' => 'notify in notifications' }
+  .stream-post
+    .user-avatar
+      = link_to '/#!/u/{{notify.from.id}}' do
+        %img{ 'ng-src' => '{{notify.from.avatar.small}}' }
+
+    %span.post-info
+      = link_to '{{notify.from.first_name}} {{notify.from.last_name}}', '/#!/u/{{notify.from.id}}'
+    %span.datestamp= '{{notify.created_at | timeAgo}}'
+    .text= '{{notify.notify}}'

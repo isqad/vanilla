@@ -1,24 +1,24 @@
 .row
   .span3
     .user-info
-      = link_to '/#!/profile', class: 'user-link' do
-        %img{ 'ng-src' => '{{current_user.avatar.medium}}' }
+      = link_to '/#!/u/{{user.id}}', class: 'user-link' do
+        %img{ 'ng-src' => '{{user.avatar.medium}}' }
 
-      .info{ 'ng-show' => 'current_user.bio.length' }
+      .info{ 'ng-show' => 'user.bio.length' }
         %h2 About
-        = '{{current_user.bio}}'
+        = '{{user.bio}}'
 
   .span9
     .clearfix
       .user-name.pull-left
-        %h1= '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}'
+        %h1= '{{user.first_name}} {{user.nickname}} {{user.last_name}}'
       .pull-right
-        .friendStatus{ 'ng-switch' => '', 'on' => 'user.friend'}
-        = button_tag type: 'button', class: 'friendStatus__add btn btn-success', 'ng-click' => 'addToFriends()', 'ng-switch-when' => 'false' do
-          %i.icon.icon-plus.icon-white
-          Add to friend list
-        = button_tag type: 'button', class: 'friendStatus__approve btn btn-success', 'ng-click' => 'approveToFriends()', 'ng-switch-when' => 'waiting' do
-          %i.icon.icon-ok.icon-white
-          Approve to be added to friend list
-        .friendStatus__pending{ 'ng-switch-when' => 'pending' } Pending to be added to friend list
-        .friendStatus__friends{ 'ng-switch-when' => 'friend' } You are friends
+        .friendStatus{ 'ng-switch' => '', 'on' => 'user.friend' }
+          = button_tag type: 'button', class: 'friendStatus__add btn btn-success', 'ng-click' => 'addToFriends()', 'ng-switch-when' => false do
+            %i.icon.icon-plus.icon-white
+            Add to friend list
+          = button_tag type: 'button', class: 'friendStatus__approve btn btn-success', 'ng-click' => 'approveToFriends()', 'ng-switch-when' => 'waiting' do
+            %i.icon.icon-ok.icon-white
+            Approve to be added to friend list
+          .friendStatus__pending{ 'ng-switch-when' => 'pending' } Pending to be added to friend list
+          .friendStatus__friends{ 'ng-switch-when' => 'friend' } You are friends
