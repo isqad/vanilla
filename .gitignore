@@ -16,3 +16,4 @@
 /vendor/bundle
 /public/uploads
 rails_best_practices_output.html
+/.idea
