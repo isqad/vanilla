@@ -7,7 +7,7 @@
   .span8
     %h2 Stream
     = form_tag '', name: 'postForm', 'ng-submit' => 'sendStatus()', class: 'user-status' do
-      = text_area_tag '', nil, 'ng-model' => 'status_message.body', 'on-ctrl-enter' => 'sendStatus()', class: 'status-message', placeholder: 'What happened?'
+      = text_area_tag '', nil, 'ng-model' => 'status_message.body', 'ui-keydown' => '{ \'ctrl-13\': \'sendStatus()\' }'.html_safe, class: 'status-message', placeholder: 'What happened?'
       .actions
         = button_tag type: 'submit', class: 'btn btn-success' do
           Send
