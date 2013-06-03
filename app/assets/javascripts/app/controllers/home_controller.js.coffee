@@ -3,9 +3,8 @@ appModule.controller "HomeCtrl", ($scope, Post) ->
     author_id: $scope.current_user.id
     body: ""
 
-  $scope.posts = Post.query(
+  $scope.posts = Post.query
     user_id: $scope.current_user.id
-  )
 
   $scope.sendStatus = () ->
     Post.save

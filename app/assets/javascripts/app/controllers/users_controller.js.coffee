@@ -1,10 +1,16 @@
-appModule.controller "UserCtrl", ($scope, $routeParams, User, Friendship) ->
+appModule.controller "UserCtrl", ($scope, $routeParams, User, Friendship, Post) ->
+
+  user_id = $routeParams.user_id
+
   $scope.user = User.get
-    id: $routeParams.user_id
+    id: user_id
+
+  $scope.posts = Post.query
+    user_id: user_id
 
   $scope.addToFriends = () ->
     Friendship.create
-      user_id: $scope.user.id
+      user_id: user_id
     , {}
     , (response) ->
         $scope.user.friend = "pending"
@@ -12,7 +18,7 @@ appModule.controller "UserCtrl", ($scope, $routeParams, User, Friendship) ->
 
   $scope.approveToFriends = () ->
     Friendship.save
-      user_id: $scope.user.id
+      user_id: user_id
     ,
       status: 'approve', (response) ->
         $scope.user.friend = "friend"
