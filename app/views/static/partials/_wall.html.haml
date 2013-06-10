@@ -9,7 +9,7 @@
     %span.post-info{ 'ng-switch' => '', 'on' => 'post.author.id == current_user.id' }
       = link_to '{{post.author.first_name}} {{post.author.last_name}}', '/#!/profile', 'ng-switch-when' => 'true'
       = link_to '{{post.author.first_name}} {{post.author.last_name}}', '/#!/u/{{post.author.id}}', 'ng-switch-default' => ''
-    %span.datestamp= '{{post.created_at | timeAgo}}'
-    .text= '{{post.body}}'
+    %span.datestamp{ 'ng-bind' => 'post.created_at | timeAgo' }
+    .text{ 'ng-bind' => 'post.body' }
     %span{ 'ng-repeat' => 'photo in post.photos' }
       %img{ 'ng-src' => '{{photo.image.medium}}' }

@@ -26,8 +26,7 @@
                 = link_to '/#!/notify' do
                   %i.icon-globe
                   Notify
-                  %span.badge.badge-success{:'ng-show' => 'notifySize > 0'}
-                    {{notifySize}}
+                  %span.badge.badge-success{ 'ng-show' => 'notifySize > 0', 'ng-bind' => 'notifySize'}
 
 
             %ul.nav.pull-right
@@ -45,7 +44,7 @@
 
 
             %form.navbar-search.pull-right
-              %input.search-query{type: 'text', placeholder: 'Search...', :'on-search' => '' }
+              %input.search-query{type: 'text', placeholder: 'Search...', 'on-search' => '' }
               .icon-search
 
     .container

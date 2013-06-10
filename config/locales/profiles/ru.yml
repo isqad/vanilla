@@ -1,0 +1,21 @@
+ru:
+  mongoid:
+    models:
+      profile:
+        one: 'Профиль'
+        few: 'Профиля'
+        many: 'Профилей'
+        other: 'Профили'
+    attributes:
+      profile:
+        gender: 'Пол'
+        age: 'Возраст'
+        birthday: 'День рождения'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        bio: 'О себе'
+        updated_at: 'Последнее изменение'
+    profiles:
+      gender:
+        male: 'Мужской'
+        female: 'Женский'

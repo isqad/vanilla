@@ -13,22 +13,27 @@ Vanilla::Application.routes.draw do
                  sign_up: 'register'
              }
 
-  namespace :api do
-    resources :photos, only: [ :create ], defaults: { format: :json }
+  # API v1
+  namespace :api, defaults: { format: :json } do
+    resources :photos, only: [ :create ]
 
-    resource :profile, only: [ :show, :update ], defaults: { format: :json } do
-      resources :notifications, only: [ :index, :destroy ], defaults: { format: :json }
+    resource :profile, only: [ :show, :update ] do
+      resources :notifications, only: [ :index, :destroy ]
     end
 
-    resources :users, only: [ :show ], defaults: { format: :json } do
-      resources :posts, only: [ :index, :create ], defaults: { format: :json }
-      resource :friendship, only: [ :show, :create, :update, :destroy ], defaults: { format: :json }
+    resources :users, only: [ :show ] do
+      resources :posts, only: [ :index, :create ]
+      resource :friendship, only: [ :show, :create, :update, :destroy ]
     end
 
-    resource :search, only: [ :show ], controller: 'search', defaults: { format: :json }
+    resource :search, only: [ :show ], controller: 'search'
   end
+  # end API v1
 
-  match 'static/:action', controller: 'static', defaults: { format: :html }
+  # Static templates
+  namespace :static, defaults: { format: :html } do
+    match '*path' => 'templates#show'
+  end
 
   root to: 'pages#home'
 

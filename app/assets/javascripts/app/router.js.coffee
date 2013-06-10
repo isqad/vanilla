@@ -1,35 +1,35 @@
 appModule.config ($routeProvider) ->
   $routeProvider.when("/home",
 
-    templateUrl: "/static/home"
+    templateUrl: "/static/home/index"
     controller: "HomeCtrl"
 
   ).when("/notify",
 
-    templateUrl: "/static/notify"
+    templateUrl: "/static/notifications/index"
     controller: "NotifyCtrl"
 
   ).when("/messages",
 
-    templateUrl: "/static/messages"
+    templateUrl: "/static/messages/index"
 
   ).when("/profile",
 
-    templateUrl: "/static/profile"
+    templateUrl: "/static/profiles/show"
     controller: "ProfileCtrl"
 
   ).when("/profile/edit",
 
-    templateUrl: "/static/profile_edit"
+    templateUrl: "/static/profiles/edit"
     controller: "ProfileEditCtrl"
 
   ).when("/u/:user_id",
 
-    templateUrl: "/static/user"
+    templateUrl: "/static/users/show"
     controller: "UserCtrl"
 
   ).when("/search",
-    templateUrl: "/static/search"
+    templateUrl: "/static/searches/index"
     controller: "SearchCtrl"
 
   ).otherwise

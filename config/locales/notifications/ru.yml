@@ -1,0 +1,11 @@
+ru:
+  mongoid:
+    models:
+      notification:
+        one: 'Уведомление'
+        few: 'Уведомления'
+        many: 'Уведомлений'
+        other: 'Уведомления'
+  notifications:
+    user_wants_to_add_you_as_a_friend: "%{username} хочет добавить вас в свой список друзей"
+    user_has_added_you_as_a_friend: "%{username} подтвердил, что вы друзья"

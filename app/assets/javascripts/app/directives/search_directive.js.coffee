@@ -1,6 +1,6 @@
 appModule.directive "onSearch", ($location) ->
   (scope, element) ->
-    element.on "keydown keypress", (event) ->
+    element.on "keydown", (event) ->
       if event.which == 13 and element.val().length > 3
 
         query = element.val()

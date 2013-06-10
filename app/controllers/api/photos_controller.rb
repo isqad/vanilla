@@ -1,5 +1,7 @@
 class Api::PhotosController < ApiController
 
+  # todo: Доделать чтобы работало
+  # todo: заменить carrierwave на paperclip
   def create
     @photo = current_user.photos.build(image: params[:photo])
 

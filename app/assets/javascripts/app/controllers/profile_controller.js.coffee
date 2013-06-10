@@ -12,33 +12,25 @@ appModule.controller "ProfileEditCtrl", ($scope, $http) ->
       $(document).flash_message
         text: "Profile was updated"
 
-  # Uploading profile photo
-  jQuery ($) ->
-    $("#fileupload").fileupload
-      dataType: "json"
-      autoUpload: true
-      maxNumberOfFiles: 1
-      formData:
-        "set_profile_photo": true
-      done: (event, data) ->
-        img = data.result.image
+  $scope.uploadFinished = (event, data) ->
+    img = data.result.image
 
-        avatar =
-          small: img.small
-          medium: img.medium
-          large: img.large
+    avatar =
+      small: img.small
+      medium: img.medium
+      large: img.large
 
-        $("#progressupload").hide()
+    $scope.$apply () ->
+      $scope.current_user.avatar = avatar
 
-        $scope.$apply () ->
-          $scope.current_user.avatar = avatar
+    $(document).flash_message
+      text: "You look amazing"
 
-        $(document).flash_message
-          text: "You look amazing"
-      progressall: (event, data)->
-        $("#progressupload").show()
+  $scope.uploadProgress = (event) ->
+    console.log(event)
+    progress = parseInt(event.loaded / event.total * 100, 10)
 
-        progress = parseInt(data.loaded / data.total * 100, 10)
-        $("#progressupload .bar").css("width", progress + "%")
+    $scope.$apply () ->
+      $scope.upload_progress = progress
 
 

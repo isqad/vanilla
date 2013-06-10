@@ -1,4 +1,9 @@
 en:
+  mongoid:
+    models:
+      notification:
+        one: 'Notification'
+        other: 'Notifications'
   notifications:
     user_wants_to_add_you_as_a_friend: "%{username} user wants to add you as a friend"
     user_has_added_you_as_a_friend: "%{username} user has added you as a friend"
