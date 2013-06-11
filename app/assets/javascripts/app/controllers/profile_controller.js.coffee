@@ -13,12 +13,8 @@ appModule.controller "ProfileEditCtrl", ($scope, $http) ->
         text: "Profile was updated"
 
   $scope.uploadFinished = (event, data) ->
-    img = data.result.image
 
-    $scope.current_user.avatar =
-      small: img.small
-      medium: img.medium
-      large: img.large
+    $scope.current_user.avatar = data.result.image
 
     $(document).flash_message
       text: "You look amazing"

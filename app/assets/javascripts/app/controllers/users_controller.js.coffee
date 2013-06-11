@@ -20,6 +20,6 @@ appModule.controller "UserCtrl", ($scope, $routeParams, User, Friendship, Post) 
     Friendship.save
       user_id: user_id
     ,
-      status: 'approve', (response) ->
+      status: "approve", (response) ->
         $scope.user.friend = "friend"
         #Socket.publish("/friends/notify/" + $scope.user.id, {text: "Hello, world!"});

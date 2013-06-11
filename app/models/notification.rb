@@ -17,7 +17,7 @@ class Notification
     t.add :id
     t.add :notify
     t.add :created_at
-    t.add :from
+    t.add :from, :template => :user
   end
 
   def self.friend_add(user)

@@ -45,6 +45,10 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    carrierwave-meta (0.0.4)
+      activesupport (>= 3.0)
+      carrierwave (>= 0.5.7)
+      mime-types
     carrierwave-mongoid (0.5.0)
       carrierwave (~> 0.8.0)
       mongoid (~> 3.0)
@@ -221,6 +225,7 @@ DEPENDENCIES
   better_errors (~> 0.7.2)
   bootstrap-sass (~> 2.3.0.0)
   carrierwave (~> 0.8.0)
+  carrierwave-meta (~> 0.0.4)
   carrierwave-mongoid
   coffee-rails (~> 3.2.1)
   database_cleaner (~> 0.9.1)

@@ -2,7 +2,7 @@
   .span3
     .user-info
       = link_to '/#!/u/{{user.id}}', class: 'user-link' do
-        %img{ 'ng-src' => '{{user.avatar.medium}}' }
+        %img{ 'ng-src' => '{{user.avatar.medium.url}}', :width => '{{user.avatar.medium.width}}', :height => '{{user.avatar.medium.height}}' }
 
       .info{ 'ng-show' => 'user.bio.length' }
         %h2 About

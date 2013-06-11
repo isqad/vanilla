@@ -48,9 +48,15 @@ class User
 
   validates :nickname, presence: true, length: { in: 3..15 }
 
-  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender, :fullname,
-           :first_name=, :last_name=, :bio=, :birthday=, :gender=,
+  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender, :fullname, :image_width, :image_height,
+           :first_name=, :last_name=, :bio=, :birthday=, :gender=, :set_profile_photo,
            to: :profile
+
+  index 'profile.photo_id' => 1
+  index 'profile.first_name' => 1
+  index 'profile.last_name' => 1
+
+  index({ email: 1 }, { unique: true })
 
   attr_accessor :friend
 
@@ -64,13 +70,7 @@ class User
     t.add :bio
     t.add lambda { |user| user.birthday ? I18n.l(user.birthday) : nil }, as: :birthday
     t.add :gender
-    t.add lambda { |user|
-      {
-        small: user.image_url(:thumb_small),
-        medium: user.image_url(:thumb_medium),
-        large: user.image_url(:thumb_large)
-      }
-    }, as: :avatar
+    t.add :avatar
     t.add lambda { |user| user.friend.present? ? user.friend : false }, as: :friend
   end
 
@@ -92,6 +92,14 @@ class User
     statuses = Friendship.status.keys.map(&:to_s)
 
     friendship.present? ? statuses[friendship.status] : false
+  end
+
+  def avatar
+    {
+        small: { url: self.image_url(:small), width: self.image_width(:small), height: self.image_height(:small) },
+        medium: { url: self.image_url(:medium), width: self.image_width(:medium), height: self.image_height(:medium) },
+        large: { url: self.image_url(:large), width: self.image_width(:large), height: self.image_height(:large) }
+    }
   end
 
 end

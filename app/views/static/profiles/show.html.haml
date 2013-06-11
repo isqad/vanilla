@@ -2,7 +2,7 @@
   .span3
     .user-info
       = link_to '/#!/profile', class: 'user-link' do
-        %img{ 'ng-src' => '{{current_user.avatar.medium}}' }
+        %img{ 'ng-src' => '{{current_user.avatar.medium.url}}', :width => '{{current_user.avatar.medium.width}}', :height => '{{current_user.avatar.medium.height}}' }
 
       .info{ 'ng-show' => 'current_user.bio.length' }
         %h2 About
@@ -11,7 +11,7 @@
   .span9
     .clearfix
       .user-name.pull-left
-        %h1{ 'ng-bind' => '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}' }
+        %h1= '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}'
       .pull-right
         = link_to '/#!/profile/edit', class: 'btn btn-success' do
           %i.icon.icon-edit.icon-white

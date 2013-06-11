@@ -2,6 +2,9 @@ class Api::FriendshipsController < ApiController
 
   # Friend list
   def show
+    @friends = current_user.friendships.map{ |r| r.friend }
+
+    respond_with @friends, api_template: :user
   end
 
   # Create friendship

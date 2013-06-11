@@ -18,6 +18,7 @@ gem 'haml-rails', '~> 0.3.5'
 gem 'mini_magick', '~> 3.5.0'
 gem 'carrierwave', '~> 0.8.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave-meta', '~> 0.0.4'
 
 # API
 gem 'acts_as_api', '~> 0.4.1'

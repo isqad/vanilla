@@ -2,8 +2,15 @@
   .span4
     .user-info
       = link_to '/#!/profile', class: 'user-link' do
-        %img{ 'ng-src' => '{{current_user.avatar.small}}' }
+        %img{ 'ng-src' => '{{current_user.avatar.small.url}}', :width => '{{current_user.avatar.small.width}}', :height => '{{current_user.avatar.small.height}}' }
         = '{{current_user.first_name}} {{current_user.nickname}} {{current_user.last_name}}'
+    .friends
+      %h5= link_to 'Friend list ({{friends.length}})', '/#!/profile/friendships'
+      %div{ 'ng-repeat' => 'friend in friends | limitTo:5' }
+        = link_to '/#!/u/{{friend.id}}' do
+          %img{ 'ng-src' => '{{friend.avatar.small.url}}', :width => '{{friend.avatar.small.width}}', :height => '{{friend.avatar.small.height}}' }
+          %p= '{{friend.first_name}} {{friend.nickname}} {{friend.last_name}}'
+
   .span8
     %h2 Stream
     = form_tag '', name: 'postForm', 'ng-submit' => 'sendStatus()', class: 'user-status' do

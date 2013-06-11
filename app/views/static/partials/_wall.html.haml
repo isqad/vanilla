@@ -2,9 +2,9 @@
   .stream-post
     .user-avatar{ 'ng-switch' => '', 'on' => 'post.author.id == current_user.id' }
       = link_to '/#!/profile', 'ng-switch-when' => 'true' do
-        %img{ 'ng-src' => '{{post.author.avatar.small}}' }
+        %img{ 'ng-src' => '{{post.author.avatar.small.url}}', :width => '{{post.author.avatar.small.width}}', :height => '{{post.author.avatar.small.height}}' }
       = link_to '/#!/u/{{post.author.id}}', 'ng-switch-default' => '' do
-        %img{ 'ng-src' => '{{post.author.avatar.small}}' }
+        %img{ 'ng-src' => '{{post.author.avatar.small.url}}', :width => '{{post.author.avatar.small.width}}', :height => '{{post.author.avatar.small.height}}' }
 
     %span.post-info{ 'ng-switch' => '', 'on' => 'post.author.id == current_user.id' }
       = link_to '{{post.author.first_name}} {{post.author.last_name}}', '/#!/profile', 'ng-switch-when' => 'true'

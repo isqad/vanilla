@@ -13,7 +13,7 @@ class Api::PostsController < ApiController
     if @post.save
       respond_with @post, api_template: :angular, location: nil
     else
-      render nothing: true, status: 422
+      render nothing: true, status: :unprocessable_entity
     end
   end
 

@@ -4,7 +4,7 @@
   .stream-post
     .user-avatar
       = link_to '/#!/u/{{notify.from.id}}' do
-        %img{ 'ng-src' => '{{notify.from.avatar.small}}' }
+        %img{ 'ng-src' => '{{notify.from.avatar.small.url}}', :width => '{{notify.from.avatar.small.width}}', :height => '{{notify.from.avatar.small.height}}' }
 
     %span.post-info
       = link_to '{{notify.from.first_name}} {{notify.from.last_name}}', '/#!/u/{{notify.from.id}}'

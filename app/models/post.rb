@@ -8,7 +8,7 @@ class Post
 
   belongs_to :author, class_name: 'User'
 
-  delegate :first_name, :last_name, :image_url, to: :author, prefix: true
+  delegate :id, :first_name, :last_name, :image_url, :avatar, to: :author, prefix: true
 
   validates :body, presence: true, length: { maximum: 6000 }
   validates :author, presence: true
@@ -18,15 +18,6 @@ class Post
     t.add :id
     t.add :body
     t.add :created_at
-    t.add lambda { |post|
-      {
-        id: post.author.id,
-        first_name: post.author_first_name,
-        last_name: post.author_last_name,
-        avatar: {
-          small: post.author_image_url(:thumb_small)
-        }
-      }
-    }, as: :author
+    t.add :author, :template => :user
   end
 end

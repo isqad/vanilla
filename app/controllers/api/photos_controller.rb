@@ -1,6 +1,5 @@
 class Api::PhotosController < ApiController
 
-  # todo: заменить carrierwave на paperclip
   def create
     @photo = current_user.photos.build(image: params[:photo])
 
@@ -8,7 +7,7 @@ class Api::PhotosController < ApiController
 
       if params[:set_profile_photo]
 
-        current_user.profile.set_photo(@photo)
+        current_user.set_profile_photo(@photo)
 
         #post = Post.new(author: current_user, photos: [@photo])
 
