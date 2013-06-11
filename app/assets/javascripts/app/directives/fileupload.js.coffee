@@ -1,27 +1,23 @@
-appModule.directive "fileupload", () ->
+angular.module("ui.directives").directive "uiFileupload", () ->
   restrict: "A"
-  scope:
-    done: "&"
-    progressall: "&"
   link: (scope, element, attrs) ->
-    opts =
+    params = scope.$eval(attrs["uiFileupload"])
+
+    defaultOpts = angular.extend params,
       dataType: "json"
       autoUpload: true
       maxNumberOfFiles: 1
-      formData:
-        "set_profile_photo": true
 
-    if scope.done
-      opts.done = () ->
-        scope.$apply () ->
-          scope.done
-            event: event
-            data: data
+    defaultOpts.progressall = (event, data) ->
+      scope.$apply ->
+        scope.uploadProgress(event, data)
 
-    if scope.progressall
-      opts.progressall = () ->
-        scope.$apply () ->
-          scope.progressall
-            event: event
+    defaultOpts.done = (event, data) ->
+      scope.$apply ->
+        scope.uploadFinished(event, data)
 
-    element.fileupload(opts)
+    defaultOpts.fail = (event, data) ->
+      scope.$apply ->
+        scope.uploadFailed(event, data)
+
+    element.fileupload(defaultOpts)
