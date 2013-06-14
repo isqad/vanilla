@@ -9,4 +9,5 @@
 //= require bootstrap-collapse
 //= require bootstrap-dropdown
 //= require bootstrap-alert
-//= require_self
+//= require ./colorbox
+//= require select2

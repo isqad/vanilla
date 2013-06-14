@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="span3">
+    <div class="user-info">
+
+      <a href="/#!/u/{{user.id}}" class="user-link">
+        <img data-ng-src="{{user.avatar.medium.url}}" width="{{user.avatar.medium.width}}" height="{{user.avatar.medium.height}}" />
+      </a>
+
+      <a href="/static/messages/new.html" class="btn btn-primary message-box" data-colorbox-send-message="sendMessage" data-colorbox-discussion="discussion" data-colorbox-friends="friends">
+        New message
+      </a>
+
+      <div class="info" data-ng-show="user.bio.length">
+        <h3>About</h3>
+        <span>{{user.bio}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="span9">
+    <div class="clearfix">
+      <div class="user-name pull-left">
+        <h2>{{user.fullname}}</h2>
+      </div>
+
+      <div class="pull-right">
+        <div class="friendStatus" data-ng-switch="" data-on="user.friend">
+          <button type="button" class="btn btn-success friendStatus__add" data-ng-click="addToFriends()" data-ng-switch-when="false">
+            <i class="icon icon-plus icon-white"></i>
+            Add to friend list
+          </button>
+
+          <button type="button" class="btn btn-success friendStatus__add" data-ng-click="approveToFriends()" data-ng-switch-when="waiting">
+            <i class="icon icon-ok icon-white"></i>
+            Approve to be added to friend list
+          </button>
+
+          <div class="friendStatus__pending" data-ng-switch-when="pending">
+            Pending to be added to friend list
+          </div>
+
+          <div class="friendStatus__friends" data-ng-switch-when="friend">
+            You are friends
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Stream</h3>
+    <%= render 'static/partials/wall' %>
+  </div>
+</div>

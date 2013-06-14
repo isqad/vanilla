@@ -20,6 +20,8 @@ class Friendship
 
   after_destroy :delete_inverseship
 
+  scope :friends, lambda { where(:status => STATUS[:friend]) }
+
   class << self
     def status
       STATUS

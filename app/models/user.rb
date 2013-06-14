@@ -46,6 +46,9 @@ class User
   has_many :posts, inverse_of: :author, dependent: :destroy
   has_many :notifications, inverse_of: :user, dependent: :destroy
 
+  has_many :speakers, dependent: :destroy
+  has_and_belongs_to_many :discussions, inverse_of: nil
+
   validates :nickname, presence: true, length: { in: 3..15 }
 
   delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender, :fullname, :image_width, :image_height,
@@ -67,6 +70,7 @@ class User
     t.add :nickname
     t.add :first_name
     t.add :last_name
+    t.add :fullname
     t.add :bio
     t.add lambda { |user| user.birthday ? I18n.l(user.birthday) : nil }, as: :birthday
     t.add :gender
@@ -77,6 +81,10 @@ class User
   api_accessible :user, extend: :angular do |t|
     t.remove :email
     t.remove :birthday
+  end
+
+  def fullname
+    "#{self.first_name} #{self.nickname} #{self.last_name}".strip
   end
 
   def initialize(params={}, options=nil)

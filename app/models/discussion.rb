@@ -1,26 +1,34 @@
 class Discussion
   include Mongoid::Document
 
-  attr_accessor :recipient_ids
+  attr_accessible :messages_attributes, :speakers_attributes
 
-  embeds_many :speakers
+  has_many :speakers, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  after_create :add_recipients
+  accepts_nested_attributes_for :messages, :speakers
 
-
-  private
-  def add_recipients
-    if recipient_ids.kind_of?(Array)
-      recipient_ids.uniq!
-      recipient_ids.each do |id|
-        recipient = User.where(:id => id).first
-        add_speaker(recipient) if recipient
-      end
-    end
+  acts_as_api
+  api_accessible :angular do |t|
+    t.add :id
+    t.add :speakers
   end
 
-  def add_speaker(user)
-    Speaker.create!(:discussion => self, :user => user)
+  def self.find_between_users(user, user2)
+    dialog = nil
+
+    speakers = Speaker.where('user_id = ?', user.id)
+
+    discussions = speakers.map{|s| s.discussion }
+
+    discussions.each do |discussion|
+      disc_users = discussion.speakers.map{ |s| s.user }
+      dialog = discussion if discussion.private? && ([disc_users.first, disc_users.last] - [user, user2]).empty?
+    end
+    dialog
+  end
+
+  def private?
+    self.speakers.size == 2
   end
 end

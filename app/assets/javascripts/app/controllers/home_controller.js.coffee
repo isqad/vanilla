@@ -1,4 +1,4 @@
-appModule.controller "HomeCtrl", ($scope, Post, Friendship) ->
+angular.module("vanilla").controller "HomeCtrl", ($scope, Post, Friendship) ->
 
   current_user = $scope.current_user
 

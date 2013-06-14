@@ -1,4 +1,4 @@
-appModule.directive "onSearch", ($location) ->
+angular.module("vanilla").directive "onSearch", ($location) ->
   (scope, element) ->
     element.on "keydown", (event) ->
       if event.which == 13 and element.val().length > 3

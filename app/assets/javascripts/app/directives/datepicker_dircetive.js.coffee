@@ -1,4 +1,4 @@
-appModule.directive("bDatepicker", () ->
+angular.module("vanilla").directive("bDatepicker", () ->
   require: "?ngModel"
   restrict: "A"
   link: ($scope, element, attrs, controller) ->

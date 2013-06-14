@@ -1,0 +1,26 @@
+<div class="new-message">
+  <form name="discussionForm" class="form-vertical" data-ng-submit="sendMessage()">
+    <div class="control-group">
+      <label class="control-label" for="recipients">
+        Recipients:
+      </label>
+      <div class="controls">
+        <select id="recipients" data-ng-options="f.fullname for f in friends" data-ng-model="discussion.recipient_ids" multiple>
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="message">
+        Message:
+      </label>
+      <div class="controls">
+        <textarea id="message" rows="4" class="input-xlarge" data-ng-model="discussion.message"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      Send
+    </button>
+  </form>
+</div>

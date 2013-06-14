@@ -27,6 +27,8 @@ Vanilla::Application.routes.draw do
     end
 
     resource :search, only: [ :show ], controller: 'search'
+
+    resources :discussions, only: [ :index, :create ]
   end
   # end API v1
 

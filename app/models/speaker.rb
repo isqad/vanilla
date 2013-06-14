@@ -4,5 +4,7 @@ class Speaker
   attr_accessible :user, :discussion
 
   belongs_to :user
-  embedded_in :discussion
+  belongs_to :discussion
+
+  validates :user, :discussion, presence: true
 end

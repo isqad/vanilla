@@ -1,4 +1,4 @@
-appModule.controller "SearchCtrl", ($scope, $route, $routeParams, Search) ->
+angular.module("vanilla").controller "SearchCtrl", ($scope, $route, $routeParams, Search) ->
   query = $routeParams.q
 
   if typeof query isnt "undefined" and query.length > 3

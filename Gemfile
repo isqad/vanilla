@@ -52,4 +52,5 @@ group :assets do
   gem 'jquery-rails', '~> 3.0.0'
   gem 'bootstrap-sass', '~> 2.3.0.0'
   gem 'jquery-fileupload-rails', '~> 0.4.1'
+  gem 'select2-rails', '~> 3.2.0'
 end

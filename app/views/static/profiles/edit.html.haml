@@ -35,7 +35,7 @@
         = label_tag 'photo', class: 'control-label' do
           %img{ 'ng-src' => '{{current_user.avatar.medium.url}}', :width => '{{current_user.avatar.medium.width}}', :height => '{{current_user.avatar.medium.height}}' }
         .controls
-          = file_field_tag 'photo', data: { url: '/api/photos' }, 'ui-fileupload' => '{ \'formData\': { \'set_profile_photo\': true} }'.html_safe
+          = file_field_tag 'photo', data: { url: '/api/photos', ui_fileupload: '{ \'formData\': { \'set_profile_photo\': true} }'.html_safe }
           #progressupload.progress{ 'ng-show' => 'upload_progress > 0'.html_safe }
             .bar{ 'ng-style' => '{ \'width\': upload_progress + \'%\' }'.html_safe }
 

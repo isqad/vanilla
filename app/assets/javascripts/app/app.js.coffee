@@ -1,7 +1,7 @@
 angular.module "ui.directives", []
 angular.module "ui", ["ui.directives"]
 
-window.appModule = angular.module "vanilla", ["vanilla.resources", "ui"]
+appModule = angular.module "vanilla", ["vanilla.resources", "ui"]
 
 appModule.config ($locationProvider) ->
   $locationProvider.hashPrefix("!")

@@ -1,4 +1,4 @@
-appModule.config ($routeProvider) ->
+angular.module("vanilla").config ($routeProvider) ->
   $routeProvider.when("/home",
 
     templateUrl: "/static/home/index"
@@ -28,9 +28,19 @@ appModule.config ($routeProvider) ->
     templateUrl: "/static/users/show"
     controller: "UserCtrl"
 
+  ).when("/u/:user_id/messages/new",
+
+    controller: "MessageCtrl"
+
   ).when("/search",
     templateUrl: "/static/searches/index"
     controller: "SearchCtrl"
 
+  ).when("/im",
+    templateUrl: "/static/discussions/index"
+    controller: "DiscussionCtrl"
+  ).when("/im/:discussion_id"
+    templateUrl: "/static/discussions/show"
+    controller: "DiscussionCtrl"
   ).otherwise
     redirectTo: "/home"

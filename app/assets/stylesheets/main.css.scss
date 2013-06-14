@@ -4,7 +4,9 @@ $baseLineHeight: 16px;
 @import "bootstrap";
 @import "bootstrap-responsive";
 
-
+*:focus {
+  outline: none !important;
+}
 
 body {
   padding-top: 60px;
@@ -141,4 +143,9 @@ h4, h5, h6 {
 .progress {
   height: 5px;
   width: 200px;
+}
+
+.new-message {
+  width: 640px;
+  padding: 20px;
 }

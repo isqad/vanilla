@@ -1,7 +1,7 @@
-appModule.controller "ProfileCtrl", ($scope) ->
+angular.module("vanilla").controller "ProfileCtrl", ($scope) ->
   return
 
-appModule.controller "ProfileEditCtrl", ($scope, $http) ->
+angular.module("vanilla").controller "ProfileEditCtrl", ($scope, $http) ->
   $scope.dateOptions =
     format: "dd-mm-yyyy"
 

@@ -2,7 +2,7 @@ angular.module("vanilla.resources", ["ngResource"]).factory("User",($resource) -
   $resource "/api/users/:id", {}
 
 ).factory("Profile",($resource) ->
-  $resource "/api/profile.json", {},
+  $resource "/api/profile", {},
     "save":
       method: "PUT"
 
@@ -13,7 +13,7 @@ angular.module("vanilla.resources", ["ngResource"]).factory("User",($resource) -
       isArray: true
 
 ).factory("Search",($resource) ->
-  $resource "/api/search.json", {},
+  $resource "/api/search", {},
     "query":
       method: "GET"
       isArray: true
@@ -30,6 +30,16 @@ angular.module("vanilla.resources", ["ngResource"]).factory("User",($resource) -
 
 ).factory("Notification", ($resource) ->
   $resource "/api/profile/notifications", {},
+    "query":
+      method: "GET"
+      isArray: true
+).factory("Discussion", ($resource) ->
+  $resource "/api/discussions", {},
+    "query":
+      method: "GET"
+      isArray: true
+).factory("Message", ($resource) ->
+  $resource "/api/discussions/:discussion_id/messages", {},
     "query":
       method: "GET"
       isArray: true

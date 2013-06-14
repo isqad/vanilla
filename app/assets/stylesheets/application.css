@@ -13,5 +13,7 @@
  *= require notifications
  *= require profiles
  *= require posts
+ *= require colorbox
+ *= require select2
  *= require_self
  */
