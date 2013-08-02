@@ -8,13 +8,13 @@ Vanilla is a open source social network.
 * Frontend based on [Angular](http://angularjs.org) framework;
   * All user actions occur on the same page;
   * UI based on [Twitter Bootstrap](http://twitter.github.io/bootstrap/) (default theme);
-* [MongoDb](http://mongodb.org) database.
+* Postgresql database.
 
 #### Quick Start
 
 ##### Requirements
 
-* Installed MongoDb
+* Installed Postgresql
 * Installed Ruby v. 1.9.x, RVM or RubyEnv optional
 * Installed Bundler gem
 

@@ -1,5 +1,4 @@
-class Speaker
-  include Mongoid::Document
+class Speaker < ActiveRecord::Base
 
   attr_accessible :user, :discussion
 

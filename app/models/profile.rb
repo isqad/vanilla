@@ -1,15 +1,6 @@
-class Profile
-  include Mongoid::Document
-
-  field :first_name, type: String, default: ''
-  field :last_name, type: String, default: ''
-  field :bio, type: String, default: ''
-  field :birthday, type: Date
-  field :gender, type: String, default: 'male'
+class Profile < ActiveRecord::Base
 
   belongs_to :photo
-
-  embedded_in :user
 
   attr_accessible :first_name, :last_name, :bio, :birthday, :gender, :photo
 

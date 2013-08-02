@@ -1,5 +1,4 @@
-class Discussion
-  include Mongoid::Document
+class Discussion < ActiveRecord::Base
 
   attr_accessible :messages_attributes, :speakers_attributes
 

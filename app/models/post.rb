@@ -1,12 +1,6 @@
-class Post
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
+class Post < ActiveRecord::Base
 
-  default_scope order_by(created_at: -1)
-
-  field :body, type: String
-
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
 
   delegate :id, :first_name, :last_name, :image_url, :avatar, to: :author, prefix: true
 

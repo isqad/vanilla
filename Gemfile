@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mongoid', '~> 3.0.0'
+gem 'pg', '~> 0.16.0'
 
 gem 'devise', '~> 2.2.3'
 
@@ -14,11 +14,9 @@ gem 'simple_form', '~> 2.1.0'
 # HAML
 gem 'haml-rails', '~> 0.3.5'
 
-# Files Uploading
-gem 'mini_magick', '~> 3.5.0'
-gem 'carrierwave', '~> 0.8.0'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'carrierwave-meta', '~> 0.0.4'
+# File Uploading
+gem 'paperclip', '~> 3.5.1'
+gem 'paperclip-meta', '~> 0.4.3'
 
 # API
 gem 'acts_as_api', '~> 0.4.1'

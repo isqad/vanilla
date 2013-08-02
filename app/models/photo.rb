@@ -1,25 +1,18 @@
-class Photo
-  include Mongoid::Document
-
-  field :image_small_width, type: Integer
-  field :image_small_height, type: Integer
-  field :image_medium_width, type: Integer
-
-  field :image_medium_height, type: Integer
-  field :image_large_width, type: Integer
-  field :image_large_height, type: Integer
+class Photo < ActiveRecord::Base
+  attr_accessible :image, :user
 
   belongs_to :user
 
-  mount_uploader :image, ImageUploader
-
-  attr_accessible :image, :image_cache, :user
-  attr_accessible :image_small_width, :image_small_height
-  attr_accessible :image_medium_width, :image_medium_height
-  attr_accessible :image_large_width, :image_large_height
-
   validates :user, presence: true
-  validates :image, presence: true
+  validates_attachment :image, presence: true, :size => { :less_than => 10.megabytes }
+
+  has_attached_file :image, :styles => {
+    :medium => '200x120>',
+    :small => '50x50',
+    :large => '800x600>'
+  },
+  :url => "/system/:class/:id/:style//:basename.:extension",
+  :path => ":rails_root/public/system/:class/:id/:style/:filename"
 
   acts_as_api
   api_accessible :angular do |t|

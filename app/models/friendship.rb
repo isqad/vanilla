@@ -1,15 +1,13 @@
-class Friendship
-  include Mongoid::Document
+class Friendship < ActiveRecord::Base
 
   STATUS = { :pending => 0, :waiting => 1, :friend => 2}.freeze
 
-  belongs_to :owner, class_name: 'User'
-  belongs_to :friend, class_name: 'User'
-  field :status, type: Integer, default: STATUS[:pending]
+  belongs_to :owner, :class_name => 'User', :foreign_key => 'owner_id'
+  belongs_to :friend, :class_name => 'User', :foreign_key => 'owner_id'
 
-  has_one :friendship, inverse_of: :inverseship
+  #has_one :friendship, inverse_of: :inverseship
   # Другая сторона связи
-  belongs_to :inverseship, class_name: 'Friendship'
+  belongs_to :inverseship, :class_name 'Friendship', :foreign_key => 'inversible_id'
 
   validates :owner, uniqueness: { scope: :friend }
   validate :reject_self

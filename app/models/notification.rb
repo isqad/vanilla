@@ -1,13 +1,7 @@
-class Notification
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
-
-  default_scope order_by(created_at: -1)
-
-  field :notify, type: String
+class Notification < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :from, class_name: 'User'
+  belongs_to :from, :class_name => 'User', :foreign_key => 'from_id'
 
   attr_accessible :user, :notify
 
