@@ -3,9 +3,6 @@ class Photo < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :user, presence: true
-  validates_attachment :image, presence: true, :size => { :less_than => 10.megabytes }
-
   has_attached_file :image, :styles => {
     :medium => '200x120>',
     :small => '50x50',
@@ -13,6 +10,9 @@ class Photo < ActiveRecord::Base
   },
   :url => "/system/:class/:id/:style//:basename.:extension",
   :path => ":rails_root/public/system/:class/:id/:style/:filename"
+
+  validates :user, presence: true
+  validates_attachment :image, presence: true, :size => { :less_than => 10.megabytes }
 
   acts_as_api
   api_accessible :angular do |t|

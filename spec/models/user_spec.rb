@@ -5,7 +5,7 @@ describe User do
 
   let!(:attrs) {
     {
-      nickname: 'isqad88',
+      username: 'isqad88',
       first_name: 'Andrew',
       last_name: 'Hunter',
       bio: 'I am cat lover',
@@ -22,14 +22,14 @@ describe User do
     FactoryGirl.build(:user, email: '').should_not be_valid
   end
 
-  it 'require a nickname' do
-    FactoryGirl.build(:user, nickname: '').should_not be_valid
+  it 'require a username' do
+    FactoryGirl.build(:user, username: '').should_not be_valid
   end
 
-  it 'length of nickname must be in 3..15' do
-    FactoryGirl.build(:user, nickname: 'a'*5).should be_valid
-    FactoryGirl.build(:user, nickname: 'a'*16).should_not be_valid
-    FactoryGirl.build(:user, nickname: 'a'*2).should_not be_valid
+  it 'length of username must be in 3..15' do
+    FactoryGirl.build(:user, username: 'a'*5).should be_valid
+    FactoryGirl.build(:user, username: 'a'*16).should_not be_valid
+    FactoryGirl.build(:user, username: 'a'*2).should_not be_valid
   end
 
   it 'reject duplicate email addresses' do
@@ -51,13 +51,15 @@ describe User do
     user.save!
     user.update_attributes!(attrs)
 
+    user.reload
+
     user.first_name.should eql(attrs[:first_name])
     user.last_name.should eql(attrs[:last_name])
     user.bio.should eql(attrs[:bio])
     user.birthday.should eql(attrs[:birthday])
     user.gender.should eql(attrs[:gender])
 
-    user.nickname.should eql(attrs[:nickname])
+    user.username.should eql(attrs[:username])
   end
 
   describe '.friend_status_of' do

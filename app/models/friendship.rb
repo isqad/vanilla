@@ -2,21 +2,17 @@ class Friendship < ActiveRecord::Base
 
   STATUS = { :pending => 0, :waiting => 1, :friend => 2}.freeze
 
-  belongs_to :owner, :class_name => 'User', :foreign_key => 'owner_id'
-  belongs_to :friend, :class_name => 'User', :foreign_key => 'owner_id'
+  belongs_to :owner, :class_name => 'User'
+  belongs_to :friend, :class_name => 'User'
 
-  #has_one :friendship, inverse_of: :inverseship
-  # Другая сторона связи
-  belongs_to :inverseship, :class_name 'Friendship', :foreign_key => 'inversible_id'
-
-  validates :owner, uniqueness: { scope: :friend }
+  validates :owner_id, uniqueness: { scope: :friend_id }
   validate :reject_self
 
-  before_create :wait_status
+  #before_create :wait_status
 
-  before_save :friend_status
+  #before_save :friend_status
 
-  after_destroy :delete_inverseship
+  #after_destroy :delete_inverseship
 
   scope :friends, lambda { where(:status => STATUS[:friend]) }
 

@@ -15,9 +15,22 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  has_one :profile
 
   has_many :photos, :dependent => :destroy
   has_many :speakers, :dependent => :destroy
+
+  has_many :friendships, :foreign_key => 'owner_id'
+  has_many :friends, :through => :friendships, :source => :user
+
+  has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+  delegate :image_url, :first_name, :last_name, :bio, :birthday, :gender, :fullname, :image_width, :image_height,
+           :first_name=, :last_name=, :bio=, :birthday=, :gender=, :set_profile_photo,
+           to: :profile
+
+  validates :username, :presence => true, length: { in: 3..15 }
 =begin
   #has_many :photos, dependent: :destroy
   #has_many :friendships, inverse_of: :owner, dependent: :destroy
@@ -60,13 +73,15 @@ class User < ActiveRecord::Base
   end
 
 
+
+=end
+
   def initialize(params={}, options=nil)
     profile_set = params.has_key?(:profile) || params.has_key?('profile')
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super
     self.profile ||= Profile.new unless profile_set
   end
-=end
 
   def friend_status_of(user)
     friendship = self.friendships.where(friend: user).first
