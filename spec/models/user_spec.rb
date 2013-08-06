@@ -3,17 +3,6 @@ require 'spec_helper'
 describe User do
   let!(:user) { FactoryGirl.build(:user) }
 
-  let!(:attrs) {
-    {
-      username: 'isqad88',
-      first_name: 'Andrew',
-      last_name: 'Hunter',
-      bio: 'I am cat lover',
-      birthday: 24.years.ago.to_date,
-      gender: 'male'
-    }
-  }
-
   it 'create a valid instance given valid parameters' do
     user.save!
   end
@@ -43,44 +32,8 @@ describe User do
     FactoryGirl.build(:user, email: upcased_email).should_not be_valid
   end
 
-  it 'should has a profile' do
+  it 'always has a profile' do
     User.new.profile.should_not be_nil
   end
-
-  it 'allows directly assign profile attributes' do
-    user.save!
-    user.update_attributes!(attrs)
-
-    user.reload
-
-    user.first_name.should eql(attrs[:first_name])
-    user.last_name.should eql(attrs[:last_name])
-    user.bio.should eql(attrs[:bio])
-    user.birthday.should eql(attrs[:birthday])
-    user.gender.should eql(attrs[:gender])
-
-    user.username.should eql(attrs[:username])
-  end
-
-  describe '.friend_status_of' do
-
-    let!(:friend) { FactoryGirl.create(:user) }
-    before(:each) { user.save! }
-
-    it 'should return pending if in pending friend list' do
-      user.friendships.create!(friend: friend)
-
-      user.friend_status_of(friend).should eql('pending')
-    end
-
-    it 'should return false if not friend list' do
-      user.friend_status_of(friend).should eql(false)
-    end
-
-    it 'should return friend if in friend list' do
-      user.friendships.create!(friend: friend, status: Friendship.status[:friend])
-      user.friend_status_of(friend).should eql('friend')
-    end
-   end
 
 end

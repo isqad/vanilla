@@ -3,7 +3,10 @@ Vanilla::Application.routes.draw do
   devise_for :users,
              controllers: {
                  sessions: 'sessions',
-                 registrations: 'registrations'
+                 registrations: 'registrations',
+                 passwords: 'passwords',
+                 unlocks: 'unlocks',
+                 confirmations: 'confirmations'
              },
              path: 'user',
              path_names: {
@@ -36,6 +39,10 @@ Vanilla::Application.routes.draw do
     match '*path' => 'templates#show'
   end
 
-  root to: 'pages#home'
+  authenticated :user do
+    root :to => 'pages#home', :as => :authenticated_root
+  end
+
+  root :to => redirect('/user/login')
 
 end

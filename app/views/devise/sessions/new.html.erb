@@ -1,0 +1,25 @@
+<div class="span4">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' }) do |f| -%>
+    <%= f.input :email %>
+    <%= f.input :password %>
+
+    <% if devise_mapping.rememberable? -%>
+      <%= f.simple_fields_for :remember_me do |r| -%>
+        <label class="checkbox">
+          <%= r.check_box :remember_me %>
+          <%= t('activerecord.attributes.user.remember_me') %>
+        </label>
+      <% end -%>
+    <% end -%>
+
+    <%= f.submit t('users.sign_in'), class: 'btn btn-primary' %>
+    <% if devise_mapping.registerable? && controller_name != 'registrations' -%>
+      <%= link_to t('users.sign_up'), new_user_registration_path, class: 'btn' %>
+    <% end -%>
+  <% end -%>
+
+  <%= render 'devise/shared/links' %>
+</div>
+<div class="span8">
+  Users news
+</div>

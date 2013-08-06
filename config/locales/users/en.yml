@@ -14,3 +14,4 @@ en:
     sign_up: 'Sign up'
     sign_in: 'Sign in'
     sign_out: 'Logout'
+    send_me_reset: 'Send me reset password instructions'
