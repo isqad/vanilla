@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id         :integer          not null, primary key
+#  first_name :string(255)      default(""), not null
+#  last_name  :string(255)      default(""), not null
+#  user_id    :integer
+#  birthday   :date
+#  gender     :string(255)      default("male"), not null
+#  photo_id   :integer
+#  bio        :text             default(""), not null
+#
+
 class Profile < ActiveRecord::Base
 
   belongs_to :photo

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: discussions
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Discussion < ActiveRecord::Base
 
   attr_accessible :messages_attributes, :speakers_attributes

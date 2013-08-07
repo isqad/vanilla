@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: friendships
+#
+#  id         :integer          not null, primary key
+#  owner_id   :integer          not null
+#  friend_id  :integer          not null
+#  status     :integer          default(0), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Friendship < ActiveRecord::Base
 
   STATUS = { :pending => 0, :waiting => 1, :friend => 2}.freeze

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,7 +27,8 @@ gem 'faye', '~> 0.8.9'
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
-  gem 'rails_best_practices'
+  gem 'rails_best_practices', '~> 1.14.0'
+  gem 'annotate', '~> 2.5.0'
 end
 
 group :test, :development do
