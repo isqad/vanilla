@@ -23,21 +23,21 @@ class Profile < ActiveRecord::Base
   validates :gender, inclusion: { in: %w(male female) }, allow_blank: true
   validates :bio, :length => { maximum: 6000 }
 
-  delegate :url, :size, :to => :photo, :prefix => true, :allow_nil => true
+  delegate :url, :image_size, :to => :photo, :allow_nil => true, :prefix => true
 
-  def avatar(size = :medium)
+  def avatar(size=:medium)
     self.photo_url(size) || "/assets/user/default_#{size}.jpg"
   end
 
-  def avatar_size(size = :medium)
-    self.photo_size(size)
+  def avatar_size(size=:medium)
+    self.photo_image_size(size) || case size
+      when :small then '50x50'
+      when :medium then '200x200'
+      else '800x800'
+    end
   end
 
   def set_profile_photo(photo)
     self.update_attributes!(:photo => photo)
-  end
-
-  def fullname
-    "#{first_name} #{last_name}"
   end
 end

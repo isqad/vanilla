@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true, length: { in: 3..15 }
 
-  delegate :first_name,  :last_name, :avatar_size, :avatar, :fullname, :to => :profile, :allow_nil => true
+  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_size, :to => :profile, :allow_nil => true
 
   accepts_nested_attributes_for :profile
 
@@ -56,8 +56,20 @@ class User < ActiveRecord::Base
   api_accessible :angular do |t|
     t.add :id
     t.add :username
+    t.add :email
     t.add :first_name
     t.add :last_name
+    t.add :fullname
+    t.add lambda { |u|
+      {
+        small: { url: u.avatar(:small), size: u.avatar_size(:small) },
+        medium: { url: u.avatar(:medium), size: u.avatar_size(:medium) },
+        large: { url: u.avatar(:large), size: u.avatar_size(:large) },
+      }
+    }, :as => :avatar
+    t.add :bio
+    t.add :gender
+    t.add :birthday
   end
 
   # Set default profile
@@ -66,6 +78,10 @@ class User < ActiveRecord::Base
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super
     self.profile ||= Profile.new unless profile_set
+  end
+
+  def fullname
+    "#{first_name} #{username} #{last_name}".strip
   end
 
 end
