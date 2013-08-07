@@ -24,6 +24,8 @@ gem 'acts_as_api', '~> 0.4.1'
 gem 'thin', '~> 1.5.1'
 gem 'faye', '~> 0.8.9'
 
+gem 'autoprefixer-rails'
+
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
