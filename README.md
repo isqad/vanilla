@@ -2,6 +2,8 @@
 
 Vanilla is a open source social network.
 
+![screen](https://raw.github.com/isqad88/vanilla/postgresql/doc/screen.jpg)
+
 #### Features
 
 * Ruby on Rails framework as backend application;
