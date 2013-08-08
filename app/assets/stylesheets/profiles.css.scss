@@ -4,39 +4,22 @@
 
 @import "bootstrap/variables";
 
-.user-info {
-  width: 300px;
-  margin: 0 auto;
-  text-align: center;
-
-  .avatar, .info {
-    width: 200px;
-    margin: 0 auto;
-  }
-
-  .info {
-    text-align: left;
-    margin-top: 20px;
-  }
-
-  a.user-link {
-    display: block;
-    color: $textColor;
-    vertical-align: top;
-    text-align: left;
-    &:hover {
-      text-decoration: none;
-    }
-  }
+.userAvatar {
+  display: block;
+  width: 200px;
+}
+.userName {
+  color: $textColor;
+  font-size: $baseFontSize * 1.25;
 }
 
-form.user-status {
+.userStatusForm {
   display: block;
-  textarea.status-message {
-    width: 755px;
+  margin-bottom: 20px;
+  .userStatusForm_message {
+    width: 685px;
   }
   .actions {
     text-align: right;
   }
-  margin-bottom: 20px;
 }

@@ -36,9 +36,9 @@ class Photo < ActiveRecord::Base
     t.add :id
     t.add lambda { |photo|
       {
-        small: { url: photo.url(:small), size: photo.image_size(:small) },
-        medium: { url: photo.url(:medium), size: photo.image_size(:medium) },
-        large: { url: photo.url(:large), size: photo.image_size(:large) },
+        small: { url: photo.url(:small), width: photo.image_width(:small), height: photo.image_height(:small) },
+        medium: { url: photo.url(:medium), width: photo.image_width(:medium), height: photo.image_height(:medium) },
+        large: { url: photo.url(:large), width: photo.image_width(:large), height: photo.image_height(:large) },
       }
     }, :as => :image
   end

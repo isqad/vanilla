@@ -1,0 +1,25 @@
+<div ng-repeat="post in posts">
+  <div class="userPost">
+    <div class="userPost_avatar" ng-switch on="post.author.id == current_user.id">
+      <a href="/#!/profile" ng-switch-when="true">
+        <img ng-src="{{current_user.avatar.small.url}}" width="{{current_user.avatar.small.width}}" height="{{current_user.avatar.small.height}}" />
+      </a>
+
+      <a href="/#!/u/{{post.author.id}}" ng-switch-default>
+        <img ng-src="{{post.author.avatar.small.url}}" width="{{post.author.avatar.small.width}}" height="{{post.author.avatar.small.height}}" />
+      </a>
+    </div>
+
+    <span class="userPost_info" ng-switch on="post.author.id == current_user.id">
+      <a href="/#!/profile" ng-switch-when="true">{{current_user.fullname}}</a>
+      <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{current_user.fullname}}</a>
+    </span>
+
+    <span class="userPost_date">
+      {{post.created_at | timeAgo}}
+    </span>
+    <div class="userPost_body">
+      {{post.body}}
+    </div>
+  </div>
+</div>

@@ -4,16 +4,17 @@ class Api::PostsController < ApiController
 
   def index
     @posts = @user.posts
-    respond_with @posts, api_template: :angular
+    respond_with @posts, :api_template => :angular
   end
 
+  # POST /api/users/:user_id/posts
   def create
-    @post = Post.new(params[:post].except(:author_id).merge(author: current_user))
+    @post = Post.new(params[:post].except(:author_id).merge(:author => current_user))
 
     if @post.save
-      respond_with @post, api_template: :angular, location: nil
+      respond_with @post, :api_template => :angular, :location => nil
     else
-      render nothing: true, status: :unprocessable_entity
+      respond_with @post.errors
     end
   end
 

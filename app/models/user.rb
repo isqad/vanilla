@@ -45,9 +45,11 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+  has_many :posts, :dependent => :destroy, :foreign_key => 'author_id'
+
   validates :username, :presence => true, length: { in: 3..15 }
 
-  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_size, :to => :profile, :allow_nil => true
+  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_width, :avatar_height, :to => :profile, :allow_nil => true
 
   accepts_nested_attributes_for :profile
 
@@ -62,9 +64,9 @@ class User < ActiveRecord::Base
     t.add :fullname
     t.add lambda { |u|
       {
-        small: { url: u.avatar(:small), size: u.avatar_size(:small) },
-        medium: { url: u.avatar(:medium), size: u.avatar_size(:medium) },
-        large: { url: u.avatar(:large), size: u.avatar_size(:large) },
+        small: { url: u.avatar(:small), width: u.avatar_width(:small), height: u.avatar_height(:small) },
+        medium: { url: u.avatar(:medium), width: u.avatar_width(:medium), height: u.avatar_height(:medium) },
+        large: { url: u.avatar(:large), width: u.avatar_width(:large), height: u.avatar_height(:large) },
       }
     }, :as => :avatar
     t.add :bio

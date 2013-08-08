@@ -1,10 +1,19 @@
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <a href="/#!/profile" class="userAvatar">
-      <%= image_tag nil, :'ng-src' => '{{current_user.avatar.small.url}}', :size => '{{current_user.avatar.small.size}}' %>
+      <img ng-src="{{current_user.avatar.medium.url}}" width="{{current_user.avatar.medium.width}}" height="{{current_user.avatar.medium.height}}" />
     </a>
+    <a href="/#!/profile" class="userName">{{current_user.fullname}}</a>
   </div>
-  <div class="span8">
+  <div class="span9">
+    <h2>Stream</h2>
+    <form name="postForm" ng-submit="sendStatus()" class="userStatusForm">
+      <textarea ng-model="status_message.body" ui-keydown="{ 'ctrl-13': 'sendStatus()' }" class="userStatusForm_message" placeholder="What happened?"></textarea>
+      <div class="actions">
+        <button type="submit" class="btn btn-success">Send</button>
+      </div>
+    </form>
 
+    <%= render 'static/partials/wall' %>
   </div>
 </div>
