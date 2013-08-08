@@ -19,13 +19,18 @@ class Photo < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :image, :styles => {
-    :medium => '200x120>',
-    :small => '50x50',
-    :large => '800x600>'
+    :medium => ['200x', :jpg],
+    :small => ['50x', :jpg],
+    :large => ['800x', :jpg]
+  },
+  :convert_options => {
+    :medium => '-strip -gravity north -crop 200x300+0+0 +repage',
+    :small => '-strip -gravity north -crop 50x50+0+0 +repage',
+    :large => '-strip'
   },
   :default_url => '/assets/user/default_:style.jpg',
-  :url => "/system/:class/:id/:style//:basename.:extension",
-  :path => ":rails_root/public/system/:class/:id/:style/:filename"
+  :url => "/system/:user_id/:class/:id/:style/:basename.:extension",
+  :path => ":rails_root/public/system/:user_id/:class/:id/:style/:filename"
 
   validates :user, presence: true
   validates_attachment :image, presence: true, :size => { :less_than => 10.megabytes }
@@ -36,9 +41,9 @@ class Photo < ActiveRecord::Base
     t.add :id
     t.add lambda { |photo|
       {
-        small: { url: photo.url(:small), width: photo.image_width(:small), height: photo.image_height(:small) },
-        medium: { url: photo.url(:medium), width: photo.image_width(:medium), height: photo.image_height(:medium) },
-        large: { url: photo.url(:large), width: photo.image_width(:large), height: photo.image_height(:large) },
+        small: { url: photo.url(:small), width: photo.image.width(:small), height: photo.image.height(:small) },
+        medium: { url: photo.url(:medium), width: photo.image.width(:medium), height: photo.image.height(:medium) },
+        large: { url: photo.url(:large), width: photo.image.width(:large), height: photo.image.height(:large) },
       }
     }, :as => :image
   end
@@ -47,8 +52,16 @@ class Photo < ActiveRecord::Base
     self.image.url(size)
   end
 
-  def image_size(size = :medium)
-    self.image.image_size(size)
+  def image_width(size = :medium)
+    self.image.width(size)
+  end
+
+  def image_height(size = :medium)
+    self.image.height(size)
+  end
+
+  Paperclip.interpolates :user_id do |attachment, style|
+    "user_#{attachment.instance.user_id}"
   end
 
 end

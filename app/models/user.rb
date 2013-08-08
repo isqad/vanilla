@@ -45,11 +45,11 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-  has_many :posts, :dependent => :destroy, :foreign_key => 'author_id'
+  has_many :posts, :dependent => :destroy, :foreign_key => 'author_id', :include => :author
 
   validates :username, :presence => true, length: { in: 3..15 }
 
-  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_width, :avatar_height, :to => :profile, :allow_nil => true
+  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_width, :avatar_height, :set_profile_photo, :to => :profile, :allow_nil => true
 
   accepts_nested_attributes_for :profile
 

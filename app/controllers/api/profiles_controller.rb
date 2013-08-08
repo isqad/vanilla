@@ -7,7 +7,7 @@ class Api::ProfilesController < ApiController
 
   # PUT /api/profile
   def update
-    current_user.update_attributes!(params[:profile].except(:id, :email, :avatar))
+    current_user.profile.update_attributes!(params[:profile].except(:id, :email, :avatar, :fullname, :username))
 
     respond_with current_user, :api_template => :angular
   end

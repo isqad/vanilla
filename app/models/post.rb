@@ -11,7 +11,7 @@
 
 class Post < ActiveRecord::Base
 
-  belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
+  belongs_to :author, :class_name => 'User', :foreign_key => 'author_id', :include => [ :profile ]
 
   validates :body, presence: true, :length => { maximum: 6000 }
   validates :author, presence: true

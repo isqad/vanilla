@@ -23,7 +23,7 @@ class Profile < ActiveRecord::Base
   validates :gender, inclusion: { in: %w(male female) }, allow_blank: true
   validates :bio, :length => { maximum: 6000 }
 
-  delegate :url, :image_width, :image_height, :to => :photo, :allow_nil => true, :prefix => true
+  delegate :url, :image_width, :image_height, :image, :to => :photo, :allow_nil => true, :prefix => true
 
   def avatar(size=:medium)
     self.photo_url(size) || "/assets/user/default_#{size}.jpg"
@@ -46,6 +46,9 @@ class Profile < ActiveRecord::Base
   end
 
   def set_profile_photo(photo)
-    self.update_attributes!(:photo => photo)
+    Profile.transaction do
+      self.photo_image.destroy
+      self.update_attributes!(:photo => photo)
+    end
   end
 end
