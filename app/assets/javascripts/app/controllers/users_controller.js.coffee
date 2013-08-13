@@ -3,12 +3,14 @@ angular.module("vanilla").controller "UserCtrl", ($scope, $routeParams, User, Fr
   current_user = $scope.current_user
   user_id = $routeParams.user_id
 
+  # Get user
   $scope.user = User.get
     id: user_id
 
+  # Get user friends
   $scope.friends = Friendship.query
     user_id: current_user.id
-  , () ->
+  , (->
     recipient_ids = []
     angular.forEach $scope.friends, (friend) ->
       if friend.id == user_id
@@ -17,6 +19,7 @@ angular.module("vanilla").controller "UserCtrl", ($scope, $routeParams, User, Fr
     $scope.discussion =
       recipient_ids: recipient_ids
       message: ""
+  )
 
   $scope.posts = Post.query
     user_id: user_id

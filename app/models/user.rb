@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   has_many :speakers, :dependent => :destroy
 
   has_many :friendships, :foreign_key => 'owner_id'
-  has_many :friends, :through => :friendships, :source => :user
+  has_many :friends, :through => :friendships, :source => :friend
 
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     t.add :bio
     t.add :gender
     t.add :birthday
+  end
+
+  api_accessible :user, :extend => :angular do |t|
+    t.remove :email
   end
 
   # Set default profile

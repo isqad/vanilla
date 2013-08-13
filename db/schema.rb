@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802132122) do
+ActiveRecord::Schema.define(:version => 20130812050923) do
 
   create_table "discussions", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -19,15 +19,16 @@ ActiveRecord::Schema.define(:version => 20130802132122) do
   end
 
   create_table "friendships", :force => true do |t|
-    t.integer  "owner_id",                  :null => false
-    t.integer  "friend_id",                 :null => false
-    t.integer  "status",     :default => 0, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "owner_id",                          :null => false
+    t.integer  "friend_id",                         :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "state",      :default => "pending"
   end
 
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["owner_id"], :name => "index_friendships_on_owner_id"
+  add_index "friendships", ["state"], :name => "index_friendships_on_state"
 
   create_table "messages", :force => true do |t|
     t.text     "body"

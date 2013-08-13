@@ -13,4 +13,9 @@ FactoryGirl.define do
     sequence(:first_name) { |n| "Andrew#{n}" }
     sequence(:last_name) { |n| "Hunter#{n}" }
   end
+
+  factory :friendship do
+    association :owner, :factory => :user
+    association :friend, :factory => :user
+  end
 end

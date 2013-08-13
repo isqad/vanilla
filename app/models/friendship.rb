@@ -5,14 +5,15 @@
 #  id         :integer          not null, primary key
 #  owner_id   :integer          not null
 #  friend_id  :integer          not null
-#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  state      :string(255)
 #
 
 class Friendship < ActiveRecord::Base
+  include Workflow
 
-  STATUS = { :pending => 0, :waiting => 1, :friend => 2}.freeze
+  attr_accessible :friend_id, :owner_id, :state
 
   belongs_to :owner, :class_name => 'User'
   belongs_to :friend, :class_name => 'User'
@@ -20,7 +21,15 @@ class Friendship < ActiveRecord::Base
   validates :owner_id, :uniqueness => { scope: :friend_id }
   validate :reject_self
 
-  scope :friends, lambda { where(:status => STATUS[:friend]) }
+  workflow_column :state
+  workflow do
+    state :pending do
+      event :accept, :transitions_to => :friends
+      event :reject, :transitions_to => :subscriber
+    end
+    state :subscriber
+    state :friends
+  end
 
   private
   def reject_self

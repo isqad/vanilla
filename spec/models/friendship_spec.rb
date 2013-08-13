@@ -5,59 +5,48 @@
 #  id         :integer          not null, primary key
 #  owner_id   :integer          not null
 #  friend_id  :integer          not null
-#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  state      :string(255)
 #
 
 require 'spec_helper'
 
 describe Friendship do
 
+  let!(:friendship) { FactoryGirl.create(:friendship) }
   let!(:user) { FactoryGirl.create(:user) }
   let!(:friend) { FactoryGirl.create(:user) }
 
-  it 'should create a two new instances given valid parameters' do
+  it 'pending by default' do
+    friendship.should be_pending
+  end
+
+  it 'accept state if accepted' do
+    friendship.accept!
+    friendship.should be_friends
+  end
+
+  it 'destroyed if rejected' do
+    friendship.reject!
+    friendship.should be_subscriber
+  end
+
+  it 'allow to add friend through friends' do
     expect {
-      user.friendships.create!(friend: friend)
-    }.to change{Friendship.count}.by(2)
+      user.friends << friend
+    }.to change{user.friends.count}.by(1)
   end
 
-  it 'pending by default for sender' do
-    user.friendships.create!(friend: friend)
-    user.friendships(true).first.status.should eql(Friendship.status[:pending])
-  end
+  describe 'validation' do
 
-  it 'wating for receiver' do
-    user.friendships.create!(friend: friend)
-    friend.friendships(true).first.status.should eql(Friendship.status[:waiting])
-  end
+    it 'uniqueness' do
+      user.friendships.build(:friend_id => friend.id).save!
+      user.friendships.build(:friend_id => friend.id).should_not be_valid
+    end
 
-  it 'should be unique' do
-    user.friendships.create!(friend: friend)
-
-    user.friendships.build(friend: friend).should_not be_valid
-
-  end
-
-  it 'should reject given self' do
-    user.friendships.build(friend: user).should_not be_valid
-  end
-
-  it 'should approve to both sides' do
-    user.friendships.create!(friend: friend)
-
-    friend.friendships(true).first.update_attributes!(status: Friendship.status[:friend])
-
-    friend.friendships(true).first.status.should eql(Friendship.status[:friend])
-    user.friendships(true).first.status.should eql(Friendship.status[:friend])
-  end
-
-  it 'should destroy to both sides' do
-    user.friendships.create!(friend: friend)
-
-    expect {
-      friend.friendships(true).first.destroy
-    }.to change{Friendship.count}.from(2).to(0)
+    it 'reject self-friend' do
+      user.friendships.build(:friend_id => user.id).should_not be_valid
+    end
   end
 end

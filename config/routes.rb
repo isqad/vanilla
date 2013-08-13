@@ -23,12 +23,12 @@ Vanilla::Application.routes.draw do
       resources :notifications, only: [ :index, :destroy ]
     end
 
-    resources :users, only: [ :show ] do
-      resources :posts, only: [ :index, :create ]
-      resource :friendship, only: [ :show, :create, :update, :destroy ]
+    resources :users, :only => [ :show ] do
+      resources :posts, :only => [ :index, :create ]
+      resource :friendship, :only => [ :create, :update, :destroy ]
     end
 
-    resource :search, only: [ :show ], controller: 'search'
+    resource :search, only: [ :show ], :controller => 'search'
 
     resources :discussions, only: [ :index, :create ]
   end
