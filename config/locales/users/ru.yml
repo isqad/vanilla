@@ -12,3 +12,9 @@ ru:
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
         remember_me: 'Запомнить меня'
+  users:
+    sign_up: 'Регистрация'
+    sign_in: 'Войти'
+    sign_out: 'Выйти'
+    send_me_reset: 'Напомнить пароль'
+    resend_confirmation: 'Подтвердить регистрацию'

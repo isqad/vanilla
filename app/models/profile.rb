@@ -47,7 +47,7 @@ class Profile < ActiveRecord::Base
 
   def set_profile_photo(photo)
     Profile.transaction do
-      self.photo_image.destroy
+      self.photo_image.destroy if self.photo_image.present?
       self.update_attributes!(:photo => photo)
     end
   end

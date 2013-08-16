@@ -1,13 +1,22 @@
 //= require jquery
 //= require jquery_ujs
+
+//=require foundation/foundation
+//=require foundation/foundation.alerts
+//=require foundation/foundation.clearing
+//=require foundation/foundation.cookie
+//=require foundation/foundation.dropdown
+//=require foundation/foundation.forms
+//=require foundation/foundation.magellan
+//=require foundation/foundation.orbit
+//=require foundation/foundation.reveal
+//=require foundation/foundation.section
+//=require foundation/foundation.tooltips
+//=require foundation/foundation.topbar
+//=require foundation/foundation.interchange
+//=require foundation/foundation.placeholder
+
 //= require jquery-fileupload/basic
 //= require ./angular/angular
 //= require ./angular/angular-resource
 //= require ./jquery-timeago
-//= require ./bootstrap-datepicker/bootstrap-datepicker
-//= require_tree ./bootstrap-datepicker/locales
-//= require bootstrap-collapse
-//= require bootstrap-dropdown
-//= require bootstrap-alert
-//= require ./colorbox
-//= require select2

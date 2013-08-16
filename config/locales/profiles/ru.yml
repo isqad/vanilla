@@ -1,5 +1,5 @@
 ru:
-  mongoid:
+  activerecord:
     models:
       profile:
         one: 'Профиль'
@@ -15,7 +15,9 @@ ru:
         last_name: 'Фамилия'
         bio: 'О себе'
         updated_at: 'Последнее изменение'
-    profiles:
-      gender:
-        male: 'Мужской'
-        female: 'Женский'
+  profiles:
+    gender:
+      male: 'Мужской'
+      female: 'Женский'
+    edit: 'Редактировать профиль'
+    settings: 'Настройки'

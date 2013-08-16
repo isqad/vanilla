@@ -14,5 +14,7 @@
 //= require ./vendor/vendors
 
 //= require flash_messages
-//= require ./app/index
+/// require ./app/index
 //= require_self
+
+$(function(){ $(document).foundation(); });

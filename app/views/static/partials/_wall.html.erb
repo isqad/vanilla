@@ -12,7 +12,7 @@
 
     <span class="userPost_info" ng-switch on="post.author.id == current_user.id">
       <a href="/#!/profile" ng-switch-when="true">{{current_user.fullname}}</a>
-      <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{current_user.fullname}}</a>
+      <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{post.author.fullname}}</a>
     </span>
 
     <span class="userPost_date">
