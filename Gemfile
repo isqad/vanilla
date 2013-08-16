@@ -29,6 +29,8 @@ gem 'workflow', '~> 1.0.0'
 # Meta search
 gem 'squeel', '~> 1.1.0'
 
+gem 'russian', '~> 0.6.0'
+
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
