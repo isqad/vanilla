@@ -142,6 +142,9 @@ GEM
       activesupport (= 3.2.14)
       bundler (~> 1.0)
       railties (= 3.2.14)
+    rails-timeago (2.5.1)
+      actionpack (>= 3.1)
+      activesupport (>= 3.1)
     rails_best_practices (1.14.0)
       activesupport
       awesome_print
@@ -235,6 +238,7 @@ DEPENDENCIES
   paperclip-meta (~> 0.4.3)
   pg (~> 0.16.0)
   rails (= 3.2.14)
+  rails-timeago (~> 2.0)
   rails_best_practices (~> 1.14.0)
   rspec-rails (~> 2.0)
   russian (~> 0.6.0)

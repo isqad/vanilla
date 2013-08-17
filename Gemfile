@@ -54,6 +54,9 @@ group :assets do
   gem 'uglifier', '~> 1.3.0'
   gem 'jquery-rails', '~> 3.0.0'
   gem 'zurb-foundation', '~> 4.3.1'
+
+  # jQuery asset pipeline plugins
   gem 'jquery-fileupload-rails', '~> 0.4.1'
+  gem 'rails-timeago', '~> 2.0'
   #gem 'select2-rails', '~> 3.2.0'
 end

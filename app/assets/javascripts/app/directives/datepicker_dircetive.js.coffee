@@ -1,3 +1,4 @@
+###
 angular.module("vanilla").directive("bDatepicker", () ->
   require: "?ngModel"
   restrict: "A"
@@ -26,3 +27,4 @@ angular.module("vanilla").directive("bDatepicker", () ->
       element.datepicker(options).on "changeDate", updateModel
     )
 )
+###

@@ -17,4 +17,6 @@
 /// require ./app/index
 //= require_self
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+});

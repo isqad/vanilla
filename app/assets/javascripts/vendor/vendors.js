@@ -19,4 +19,5 @@
 //= require jquery-fileupload/basic
 //= require ./angular/angular
 //= require ./angular/angular-resource
-//= require ./jquery-timeago
+
+//= require rails-timeago-all
