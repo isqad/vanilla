@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-  has_many :posts, :dependent => :destroy, :foreign_key => 'author_id', :include => :author
+  has_many :posts, :dependent => :destroy, :foreign_key => 'author_id', :include => :author, :order => 'created_at DESC'
 
   validates :username, :presence => true, length: { in: 3..15 }
 

@@ -1,19 +1,26 @@
 <div class="row">
-  <div class="span3">
-    <a href="/#!/profile" class="userAvatar">
-      <img ng-src="{{current_user.avatar.medium.url}}" width="{{current_user.avatar.medium.width}}" height="{{current_user.avatar.medium.height}}" />
-    </a>
-    <a href="/#!/profile" class="userName">{{current_user.fullname}}</a>
+  <div class="large-3 columns">
+    <div class="user-sidebar">
+      <a href="/#!/profile" class="th radius">
+        <img ng-src="{{current_user.avatar.medium.url}}" width="{{current_user.avatar.medium.width}}" height="{{current_user.avatar.medium.height}}" />
+      </a>
+      <ul class="side-nav">
+        <li><a href="#"><i class="icon-group"></i> Friends</a></li>
+        <li><a href="#"><i class="icon-camera-retro"></i> Photos</a></li>
+        <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="span9">
-    <h2>Stream</h2>
-    <form name="postForm" ng-submit="sendStatus()" class="userStatusForm">
-      <textarea ng-model="status_message.body" ui-keydown="{ 'ctrl-13': 'sendStatus()' }" class="userStatusForm_message" placeholder="What happened?"></textarea>
-      <div class="actions">
-        <button type="submit" class="btn btn-success">Send</button>
-      </div>
-    </form>
+  <div class="large-9 columns">
+    <div class="user-posts">
+      <h5 class="subheader"><a href="/#!/profile" class="user-posts_title">{{current_user.fullname}}</a></h5>
 
-    <%= render 'static/partials/wall' %>
+      <form name="postForm" ng-submit="sendStatus()" class="user-posts_form">
+        <textarea ng-model="status_message.body" ui-keydown="{ 'ctrl-13': 'sendStatus()' }" class="user-posts_form_input" placeholder="<%= t('posts.what_happened') %>"></textarea>
+        <button type="submit" class="button small"><%= t('posts.send') %></button>
+      </form>
+
+      <%= render 'static/partials/wall' %>
+    </div>
   </div>
 </div>

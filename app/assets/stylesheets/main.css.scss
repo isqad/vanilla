@@ -1,0 +1,26 @@
+@import "vendor/foundation_and_overrides";
+
+.user-posts {
+  .user-posts_title {
+    color: $body-font-color;
+  }
+  .user-posts_item_title {
+    margin: emCalc(10, 0);
+  }
+
+  .user-posts_item_body {
+    border: none;
+    width: 100%;
+
+    tr {
+      background: #fff !important;
+      td {
+        vertical-align: top;
+        &.user-posts_item_body_toolbar {
+          text-align: right;
+        }
+      }
+    }
+
+  }
+}

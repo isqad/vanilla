@@ -6,8 +6,8 @@ angular.module("vanilla").controller "HomeCtrl", ($scope, Post, Friendship) ->
     author_id: current_user.id
     body: ""
 
-  #$scope.posts = Post.query
-  #  user_id: current_user.id
+  $scope.posts = Post.query
+    user_id: current_user.id
 
   #$scope.friends = Friendship.query
   #  user_id: current_user.id
