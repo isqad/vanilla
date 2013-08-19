@@ -50,6 +50,11 @@ describe User do
     FactoryGirl.build(:user, email: user.email).should_not be_valid
   end
 
+  it 'reject duplicate usernames' do
+    user.save!
+    FactoryGirl.build(:user, username: user.username).should_not be_valid
+  end
+
   it 'reject email addresses identical up to case' do
     upcased_email = user.email.upcase
     FactoryGirl.create(:user, email: upcased_email)

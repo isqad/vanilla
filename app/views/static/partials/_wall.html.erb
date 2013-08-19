@@ -9,8 +9,8 @@
     <div ng-show="post.deleted_at == null">
       <div class="user-posts_item_title">
         <span ng-switch on="post.author.id == current_user.id">
-          <a href="/#!/profile" ng-switch-when="true">{{current_user.fullname}}</a>
-          <a href="/#!/u/{{post.author.id}}" ng-switch-default>{{post.author.fullname}}</a>
+          <a href="/#!/home" ng-switch-when="true">{{current_user.fullname}}</a>
+          <a href="/#!/users/{{post.author.id}}" ng-switch-default>{{post.author.fullname}}</a>
         </span>,
         <span>{{post.created_at | timeAgo}}</span>
       </div>
@@ -19,11 +19,11 @@
         <tr>
           <td width="70">
             <span ng-switch on="post.author.id == current_user.id">
-              <a href="/#!/profile" ng-switch-when="true" class="th radius">
+              <a href="/#!/home" ng-switch-when="true" class="th radius">
                 <img ng-src="{{current_user.avatar.small.url}}" width="{{current_user.avatar.small.width}}" height="{{current_user.avatar.small.height}}" />
               </a>
 
-              <a href="/#!/u/{{post.author.id}}" ng-switch-default class="th radius">
+              <a href="/#!/users/{{post.author.id}}" ng-switch-default class="th radius">
                 <img ng-src="{{post.author.avatar.small.url}}" width="{{post.author.avatar.small.width}}" height="{{post.author.avatar.small.height}}" />
               </a>
             </span>

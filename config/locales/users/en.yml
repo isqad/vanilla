@@ -21,3 +21,6 @@ en:
     did_not_receive_confirmation_instructions: 'Did not receive confirmation instructions?'
     did_not_receive_unlock_instructions: 'Did not receive unlock instructions?'
     sign_in_through_omniauth: "Sign in through %{provider}"
+    leave_blank_password: 'leave blank if you do not want to change it'
+    unhappy: 'Unhappy?'
+    cancel_account: 'Cancel my account'

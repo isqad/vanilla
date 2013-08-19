@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, :dependent => :destroy, :include => :author, :order => 'created_at DESC'
 
-  validates :username, :presence => true, length: { in: 3..15 }
+  validates :username, :presence => true, length: { in: 3..15 }, :uniqueness => true
 
   delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_width, :avatar_height, :set_profile_photo, :to => :profile, :allow_nil => true
 

@@ -1,16 +1,11 @@
-angular.module("vanilla").controller "ProfileCtrl", ($scope) ->
-  return
+angular.module("vanilla").controller "ProfileCtrl", ($scope, $http) ->
 
-angular.module("vanilla").controller "ProfileEditCtrl", ($scope, $http) ->
-  $scope.dateOptions =
-    format: "dd-mm-yyyy"
-
-  $scope.save = () ->
-    $http.put("/api/profile.json",
-      profile: $scope.current_user
-    ).success (response) ->
+  $scope.save = ->
+    $scope.current_user.$put("/api/profile").then (user) ->
+      $scope.current_user = user
       $(document).flash_message
         text: "Profile was updated"
+
 
   $scope.uploadFinished = (event, data) ->
 

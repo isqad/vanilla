@@ -6,3 +6,5 @@ en:
     formats:
       default: "%d-%m-%Y"
   delete: 'Delete'
+  save: 'Save'
+  sure: 'Are you sure?'

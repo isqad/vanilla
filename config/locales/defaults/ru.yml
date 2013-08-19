@@ -3,3 +3,5 @@ ru:
     formats:
       default: "%d-%m-%Y"
   delete: 'Удалить'
+  save: 'Сохранить'
+  sure: 'Вы уверены?'

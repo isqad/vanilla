@@ -15,9 +15,11 @@ ru:
         last_name: 'Фамилия'
         bio: 'О себе'
         updated_at: 'Последнее изменение'
+        photo: 'Фотография профиля'
   profiles:
     gender:
       male: 'Мужской'
       female: 'Женский'
     edit: 'Редактировать профиль'
     settings: 'Настройки'
+    main_info: 'Основная информация'

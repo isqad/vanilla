@@ -15,10 +15,12 @@ angular.module("vanilla.resources").factory("Post", ["railsResourceFactory", "ra
   return resource
 ])
 
-angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", (railsResourceFactory) ->
+angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   railsResourceFactory
     url: "/api/profile"
     name: "profile"
+    serializer: railsSerializer ->
+      @exclude("id", "username", "avatar", "email")
 ])
 
 

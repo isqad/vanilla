@@ -1,7 +1,7 @@
 <div class="row">
   <div class="large-3 columns">
     <div class="user-sidebar">
-      <a href="/#!/profile" class="th radius">
+      <a href="/#!/home" class="th radius">
         <img ng-src="{{current_user.avatar.medium.url}}" width="{{current_user.avatar.medium.width}}" height="{{current_user.avatar.medium.height}}" />
       </a>
       <ul class="side-nav">
@@ -13,7 +13,7 @@
   </div>
   <div class="large-9 columns">
     <div class="user-posts">
-      <h5 class="subheader"><a href="/#!/profile" class="user-posts_title">{{current_user.fullname}}</a></h5>
+      <h5 class="subheader"><a href="/#!/home" class="user-posts_title">{{current_user.fullname}}</a></h5>
 
       <form name="postForm" ng-submit="sendStatus()" class="user-posts_form">
         <textarea ng-model="status_message.body" ui-keydown="{ 'ctrl-13': 'sendStatus()' }" class="user-posts_form_input" placeholder="<%= t('posts.what_happened') %>"></textarea>

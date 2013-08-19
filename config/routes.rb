@@ -19,7 +19,7 @@ Vanilla::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :photos, only: [ :create, :show ]
 
-    resource :profile, only: [ :show, :update ] do
+    resource :profile, only: [ :update, :show ] do
       resources :notifications, only: [ :index, :destroy ]
     end
 

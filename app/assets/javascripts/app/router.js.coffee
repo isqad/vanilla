@@ -15,20 +15,15 @@ angular.module("vanilla").config ($routeProvider) ->
 
   ).when("/profile",
 
-    templateUrl: "/static/profiles/show"
+    templateUrl: "/static/profiles/edit"
     controller: "ProfileCtrl"
 
-  ).when("/profile/edit",
-
-    templateUrl: "/static/profiles/edit"
-    controller: "ProfileEditCtrl"
-
-  ).when("/u/:user_id",
+  ).when("/users/:user_id",
 
     templateUrl: "/static/users/show"
     controller: "UserCtrl"
 
-  ).when("/u/:user_id/messages/new",
+  ).when("/users/:user_id/messages/new",
 
     controller: "MessageCtrl"
 

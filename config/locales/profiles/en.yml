@@ -13,10 +13,12 @@ en:
       last_name: 'Last name'
       bio: 'Bio'
       updated_at: 'Last updated at'
+      photo: 'Profile photo'
   profiles:
     gender:
       male: 'Male'
       female: 'Female'
     edit: 'Edit profile'
     settings: 'Settings'
+    main_info: 'Main info'
 

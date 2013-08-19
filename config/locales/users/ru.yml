@@ -23,3 +23,6 @@ ru:
     did_not_receive_confirmation_instructions: 'Не получили инструкции о подтверждении аккаунта?'
     did_not_receive_unlock_instructions: 'Не получили инструкции о разблокировании аккаунта?'
     sign_in_through_omniauth: "Войти через %{provider}"
+    leave_blank_password: 'Оставьте пустым, если не хотите изменять'
+    unhappy: 'Не нравится сайт?'
+    cancel_account: 'Удалить мой аккаунт'
