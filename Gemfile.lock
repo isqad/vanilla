@@ -32,7 +32,11 @@ GEM
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
+    acts_as_paranoid (0.4.2)
+      activerecord (~> 3.2)
     addressable (2.3.5)
+    angularjs-rails (1.0.7)
+    angularjs-rails-resource (0.2.2)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -225,6 +229,9 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_api (~> 0.4.1)
+  acts_as_paranoid (~> 0.4.0)
+  angularjs-rails (~> 1.0.7)
+  angularjs-rails-resource (~> 0.2.0)
   annotate (~> 2.5.0)
   autoprefixer-rails
   better_errors (~> 0.7.2)

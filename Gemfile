@@ -31,6 +31,8 @@ gem 'squeel', '~> 1.1.0'
 
 gem 'russian', '~> 0.6.0'
 
+gem 'acts_as_paranoid', '~> 0.4.0'
+
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
@@ -52,7 +54,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   gem 'uglifier', '~> 1.3.0'
+
   gem 'jquery-rails', '~> 3.0.0'
+
+  gem 'angularjs-rails', '~> 1.0.7'
+
+  gem 'angularjs-rails-resource', '~> 0.2.0'
+
   gem 'zurb-foundation', '~> 4.3.1'
 
   gem 'font-awesome-rails', '~> 3.2.1.3'

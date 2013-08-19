@@ -24,7 +24,13 @@ Vanilla::Application.routes.draw do
     end
 
     resources :users, :only => [ :show ] do
-      resources :posts, :only => [ :index, :create ]
+
+      resources :posts, :only => [ :index, :create, :destroy ] do
+        member do
+          put 'recover'
+        end
+      end
+
       resource :friendship, :only => [ :create, :update, :destroy ]
     end
 

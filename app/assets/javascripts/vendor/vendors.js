@@ -17,7 +17,8 @@
 //=require foundation/foundation.placeholder
 
 //= require jquery-fileupload/basic
-//= require ./angular/angular
-//= require ./angular/angular-resource
+
+//= require angular
+//= require angularjs/rails/resource
 
 //= require rails-timeago-all

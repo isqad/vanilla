@@ -7,7 +7,7 @@
 #  friend_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  state      :string(255)
+#  state      :string(255)      default("pending")
 #
 
 require 'spec_helper'

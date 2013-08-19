@@ -1,5 +1,9 @@
 @import "vendor/foundation_and_overrides";
 
+html {
+  overflow-y: visible;
+}
+
 .user-posts {
   .user-posts_title {
     color: $body-font-color;
@@ -22,5 +26,10 @@
       }
     }
 
+  }
+
+  .user-posts_item_recover {
+    text-align: center;
+    margin: emCalc(10, 0);
   }
 }
