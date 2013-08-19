@@ -9,13 +9,21 @@ appModule.config ($locationProvider) ->
 appModule.config ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
 
+appModule.config (railsSerializerProvider) ->
+  railsSerializerProvider.underscore((v) ->
+    v
+  ).camelize((v) ->
+    v
+  )
+
 appModule.run ($rootScope, Profile) ->
   $rootScope.notifySize = 0
   # Get current user to global scope
-  $rootScope.current_user = Profile.get({}, (response) ->
-    # subscribe to friends notify channel
-    #Socket.subscribe("/friends/notify/" + $rootScope.current_user.id, function (data) {
-    #  $rootScope.notifySize += 1;
-    #});
-    return
-  )
+
+  Profile.get().then (user) ->
+    $rootScope.current_user = user
+
+  # subscribe to friends notify channel
+  #Socket.subscribe("/friends/notify/" + $rootScope.current_user.id, function (data) {
+  #  $rootScope.notifySize += 1;
+  #});

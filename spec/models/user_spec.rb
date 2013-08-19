@@ -1,18 +1,31 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string(255)      default(""), not null
+#  username               :string(255)
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
 require 'spec_helper'
 
 describe User do
   let!(:user) { FactoryGirl.build(:user) }
-
-  let!(:attrs) {
-    {
-      nickname: 'isqad88',
-      first_name: 'Andrew',
-      last_name: 'Hunter',
-      bio: 'I am cat lover',
-      birthday: 24.years.ago.to_date,
-      gender: 'male'
-    }
-  }
 
   it 'create a valid instance given valid parameters' do
     user.save!
@@ -22,14 +35,14 @@ describe User do
     FactoryGirl.build(:user, email: '').should_not be_valid
   end
 
-  it 'require a nickname' do
-    FactoryGirl.build(:user, nickname: '').should_not be_valid
+  it 'require a username' do
+    FactoryGirl.build(:user, username: '').should_not be_valid
   end
 
-  it 'length of nickname must be in 3..15' do
-    FactoryGirl.build(:user, nickname: 'a'*5).should be_valid
-    FactoryGirl.build(:user, nickname: 'a'*16).should_not be_valid
-    FactoryGirl.build(:user, nickname: 'a'*2).should_not be_valid
+  it 'length of username must be in 3..15' do
+    FactoryGirl.build(:user, username: 'a'*5).should be_valid
+    FactoryGirl.build(:user, username: 'a'*16).should_not be_valid
+    FactoryGirl.build(:user, username: 'a'*2).should_not be_valid
   end
 
   it 'reject duplicate email addresses' do
@@ -43,42 +56,8 @@ describe User do
     FactoryGirl.build(:user, email: upcased_email).should_not be_valid
   end
 
-  it 'should has a profile' do
+  it 'always has a profile' do
     User.new.profile.should_not be_nil
   end
-
-  it 'allows directly assign profile attributes' do
-    user.save!
-    user.update_attributes!(attrs)
-
-    user.first_name.should eql(attrs[:first_name])
-    user.last_name.should eql(attrs[:last_name])
-    user.bio.should eql(attrs[:bio])
-    user.birthday.should eql(attrs[:birthday])
-    user.gender.should eql(attrs[:gender])
-
-    user.nickname.should eql(attrs[:nickname])
-  end
-
-  describe '.friend_status_of' do
-
-    let!(:friend) { FactoryGirl.create(:user) }
-    before(:each) { user.save! }
-
-    it 'should return pending if in pending friend list' do
-      user.friendships.create!(friend: friend)
-
-      user.friend_status_of(friend).should eql('pending')
-    end
-
-    it 'should return false if not friend list' do
-      user.friend_status_of(friend).should eql(false)
-    end
-
-    it 'should return friend if in friend list' do
-      user.friendships.create!(friend: friend, status: Friendship.status[:friend])
-      user.friend_status_of(friend).should eql('friend')
-    end
-   end
 
 end

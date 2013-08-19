@@ -1,12 +1,18 @@
-class Message
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
+# == Schema Information
+#
+# Table name: messages
+#
+#  id            :integer          not null, primary key
+#  body          :text
+#  discussion_id :integer
+#  user_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 
-  field :body, type: String
+class Message < ActiveRecord::Base
 
   attr_accessible :body, :discussion, :user
-
-  default_scope order_by(created_at: -1)
 
   belongs_to :discussion
   belongs_to :user

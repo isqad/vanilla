@@ -1,42 +1,54 @@
-class Profile
-  include Mongoid::Document
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id         :integer          not null, primary key
+#  first_name :string(255)      default(""), not null
+#  last_name  :string(255)      default(""), not null
+#  user_id    :integer
+#  birthday   :date
+#  gender     :string(255)      default("male"), not null
+#  photo_id   :integer
+#  bio        :text             default(""), not null
+#
 
-  field :first_name, type: String, default: ''
-  field :last_name, type: String, default: ''
-  field :bio, type: String, default: ''
-  field :birthday, type: Date
-  field :gender, type: String, default: 'male'
+class Profile < ActiveRecord::Base
 
   belongs_to :photo
 
-  embedded_in :user
-
   attr_accessible :first_name, :last_name, :bio, :birthday, :gender, :photo
 
-  validates :first_name, length: { in: 3..15 }, allow_blank: true
-  validates :last_name, length: { in: 3..15 }, allow_blank: true
+  validates :first_name, :length => { in: 3..15 }, allow_blank: true
+  validates :last_name, :length => { in: 3..15 }, allow_blank: true
   validates :gender, inclusion: { in: %w(male female) }, allow_blank: true
-  validates :bio, length: { maximum: 6000 }
+  validates :bio, :length => { maximum: 6000 }
 
-  delegate :url, :width, :height, to: :photo, prefix: true, allow_nil: true
+  delegate :url, :image_width, :image_height, :image, :to => :photo, :allow_nil => true, :prefix => true
 
-  def image_url(size = :medium)
+  def avatar(size=:medium)
     self.photo_url(size) || "/assets/user/default_#{size}.jpg"
   end
 
-  def image_width(size = :medium)
-    self.photo_width(size)
+  def avatar_width(size=:medium)
+    self.photo_image_width(size) || case size
+      when :small then 50
+      when :medium then 200
+      else 800
+    end
   end
 
-  def image_height(size = :medium)
-    self.photo_height(size)
+  def avatar_height(size=:medium)
+    self.photo_image_height(size) || case size
+      when :small then 50
+      when :medium then 200
+      else 800
+    end
   end
 
   def set_profile_photo(photo)
-    self.update_attributes!(:photo => photo)
-  end
-
-  def fullname
-    "#{first_name} #{last_name}"
+    Profile.transaction do
+      self.photo_image.destroy if self.photo_image.present?
+      self.update_attributes!(:photo => photo)
+    end
   end
 end

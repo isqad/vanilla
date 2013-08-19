@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      post:
+        one: 'Post'
+        other: 'Posts'
+  posts:
+    send: 'Send'
+    what_happened: 'What happened?'
+    like: 'Like'
+    recover: 'Recover'
+    recover_answer: 'The Post has been removed.'

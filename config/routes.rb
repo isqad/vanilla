@@ -1,10 +1,12 @@
 Vanilla::Application.routes.draw do
 
-
   devise_for :users,
              controllers: {
                  sessions: 'sessions',
-                 registrations: 'registrations'
+                 registrations: 'registrations',
+                 passwords: 'passwords',
+                 unlocks: 'unlocks',
+                 confirmations: 'confirmations'
              },
              path: 'user',
              path_names: {
@@ -21,12 +23,18 @@ Vanilla::Application.routes.draw do
       resources :notifications, only: [ :index, :destroy ]
     end
 
-    resources :users, only: [ :show ] do
-      resources :posts, only: [ :index, :create ]
-      resource :friendship, only: [ :show, :create, :update, :destroy ]
+    resources :users, :only => [ :show ] do
+
+      resources :posts, :only => [ :index, :create, :destroy ] do
+        member do
+          put 'recover'
+        end
+      end
+
+      resource :friendship, :only => [ :create, :update, :destroy ]
     end
 
-    resource :search, only: [ :show ], controller: 'search'
+    resource :search, only: [ :show ], :controller => 'search'
 
     resources :discussions, only: [ :index, :create ]
   end
@@ -37,6 +45,10 @@ Vanilla::Application.routes.draw do
     match '*path' => 'templates#show'
   end
 
-  root to: 'pages#home'
+  authenticated :user do
+    root :to => 'pages#home', :as => :authenticated_root
+  end
+
+  root :to => redirect('/user/login')
 
 end

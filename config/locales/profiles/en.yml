@@ -1,5 +1,5 @@
 en:
-  mongoid:
+  activerecord:
     models:
       profile:
         one: 'Profile'
@@ -17,3 +17,6 @@ en:
     gender:
       male: 'Male'
       female: 'Female'
+    edit: 'Edit profile'
+    settings: 'Settings'
+

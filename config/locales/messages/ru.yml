@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    models:
+      message:
+        one: 'Сообщение'
+        few: 'Сообщения'
+        many: 'Сообщений'
+        other: 'Сообщения'
