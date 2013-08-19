@@ -1,23 +1,28 @@
-angular.module("vanilla.resources", ["ngResource"]).factory("User",($resource) ->
-  $resource "/api/users/:id", {}
+angular.module("vanilla.resources", ["rails"])
 
-).factory("Profile",($resource) ->
-  $resource "/api/profile", {},
-    "save":
-      method: "PUT"
+angular.module("vanilla.resources").factory("User", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/users"
+    name: "user"
+])
 
-).factory("Post",($resource) ->
-  $resource "/api/users/:user_id/posts", {},
-    "query":
-      method: "GET"
-      isArray: true
+angular.module("vanilla.resources").factory("Post", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+  resource = railsResourceFactory
+    url: "/api/users/{{user_id}}/posts/{{id}}"
+    name: "post"
+  resource.prototype.recover = () ->
+    resource.$put(@.$url("recover"))
+  return resource
+])
 
-).factory("Search",($resource) ->
-  $resource "/api/search", {},
-    "query":
-      method: "GET"
-      isArray: true
+angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/profile"
+    name: "profile"
+])
 
+
+###
 ).factory("Friendship", ($resource) ->
   $resource "/api/users/:user_id/friendship", {},
     "query":
@@ -44,6 +49,7 @@ angular.module("vanilla.resources", ["ngResource"]).factory("User",($resource) -
       method: "GET"
       isArray: true
 )
+###
 #.factory("Socket", ($resource) ->
 # fayeClient = new Faye.Client(window.location.protocol + "//" + window.location.hostname + ":9292/faye")
 #

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: speakers
+#
+#  id            :integer          not null, primary key
+#  discussion_id :integer
+#  user_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Speaker do

@@ -1,5 +1,5 @@
 ru:
-  mongoid:
+  activerecord:
     models:
       notification:
         one: 'Уведомление'

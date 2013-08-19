@@ -1,24 +1,15 @@
 class Api::SearchController < ApiController
 
   def show
-    query = params[:q]
+    query = params[:q].strip
 
-    criteria = Regexp.new(".*#{query}.*", true)
+    @users = User.joins{profile}
+                 .where('"users"."id" <> ?', current_user.id)
+                 .where{(username =~ "%#{query}%") |
+                        (profile.first_name =~ "%#{query}%") |
+                        (profile.last_name =~ "%#{query}%")}
 
-    @users = User.where(:id.ne => current_user.id).any_of({
-      'profile.first_name' => criteria
-    }, {
-      'profile.last_name' => criteria
-    }, {
-      'nickname' => criteria
-    })
-
-    @users.map do |u|
-      u.friend = u.friend_status_of(current_user)
-      u
-    end
-
-    respond_with @users, api_template: :user
+    respond_with @users, :api_template => :user
   end
 
 end

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="span12">
+    <h1>Search</h1>
+
+    <div class="search-item" ng-repeat="result in search_results">
+      <div class="user-avatar">
+        <img ng-src="{{result.avatar.small.url}}" width="{{result.avatar.small.width}}" height="{{result.avatar.small.height}}" />
+      </div>
+
+      <div class="user-name">
+        <a href="/#!/u/{{result.id}}">{{result.fullname}}</a>
+      </div>
+    </div>
+  </div>
+</div>

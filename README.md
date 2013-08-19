@@ -2,19 +2,21 @@
 
 Vanilla is a open source social network.
 
+![screen](https://raw.github.com/isqad88/vanilla/postgresql/doc/screen.jpg)
+
 #### Features
 
 * Ruby on Rails framework as backend application;
 * Frontend based on [Angular](http://angularjs.org) framework;
   * All user actions occur on the same page;
-  * UI based on [Twitter Bootstrap](http://twitter.github.io/bootstrap/) (default theme);
-* [MongoDb](http://mongodb.org) database.
+  * UI based on [Zurb Foundation](http://foundation.zurb.com/) (default theme);
+* Postgresql database.
 
 #### Quick Start
 
 ##### Requirements
 
-* Installed MongoDb
+* Installed Postgresql
 * Installed Ruby v. 1.9.x, RVM or RubyEnv optional
 * Installed Bundler gem
 
@@ -29,8 +31,6 @@ $ cd project_folder && bundle install --path vendor/bundle
 
 ``` bash
 $ bundle exec rails s webrick
-# Other console
-$ bundle exec rackup faye.ru -s thin -E production
 ```
 
 Open http://localhost:3000 in browser

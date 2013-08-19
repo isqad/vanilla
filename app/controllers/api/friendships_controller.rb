@@ -1,48 +1,41 @@
 class Api::FriendshipsController < ApiController
 
-  # Friend list
-  def show
-    @friends = current_user.friendships.friends.map{ |r| r.friend }
+  before_filter :find_user
 
-    respond_with @friends, api_template: :user
-  end
-
-  # Create friendship
+  # POST /api/users/:user_id/friendships
   def create
-    @user = User.find(params[:user_id])
-    @friendship = current_user.friendships.build(friend: @user)
+    @friendship = current_user.friendships.build(:friend_id => @user.id)
 
     if @friendship.save
-      respond_with @friendship, location: nil
+      respond_with @friendship, :location => nil
     else
-      render nothing: true, status: 422
+      respond_with @friendship
     end
   end
 
-  # Update friend status
+  # PUT /api/users/:user_id/friendships/:id
   def update
-    @user = User.find(params[:user_id])
-    @friendship = current_user.friendships.where(friend: @user).first
+    @friendship = current_user.friendships.find(params[:id])
 
-    render(nothing: true, status: 422) unless @friendship
+    render(:nothing => true, :status => :bad_request) and return unless %w(reject accept).include? params[:state]
 
-    case params[:status]
-      when 'approve'
-        if @friendship.update_attributes(status: Friendship.status[:friend])
-          respond_with @friendship, location: nil
-        else
-          render nothing: true, status: 422
-        end
-      when 'cancel'
-        @friendship.destroy
-        render nothing: true
-      else
-        render nothing: true, status: 422
-    end
+    @friendship.send("#{params[:state]}!".to_sym)
+
+    respond_with @friendship, :location => nil
   end
 
-  # Destroy friendship
+  # DELETE /api/users/:user_id/friendships/:id
   def destroy
+    @friendship = current_user.friendships.find(params[:id])
+
+    @friendship.destroy
+
+    respond_with @friendship, :location => nil
+  end
+
+  private
+  def find_user
+    @user = User.find(params[:user_id])
   end
 
 end

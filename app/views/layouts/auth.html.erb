@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vanilla</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <%= stylesheet_link_tag :auth, :media => 'all' %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <!-- Nvabar //-->
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Vanilla</a></h1>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= render('shared/notice', :notice => notice) if notice.present? %>
+        <%= render('shared/alert', :alert => alert) if alert.present? %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= yield %>
+      </div>
+    </div>
+
+  </body>
+</html>

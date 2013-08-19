@@ -1,7 +1,7 @@
 class Api::PhotosController < ApiController
 
   def create
-    @photo = current_user.photos.build(image: params[:photo])
+    @photo = current_user.photos.build(:image => params[:photo])
 
     if @photo.save
 
@@ -14,9 +14,9 @@ class Api::PhotosController < ApiController
         #post.save!
       end
 
-      respond_with @photo, api_template: :angular, location: api_photo_url(@photo)
+      respond_with @photo, :api_template => :angular, :location => api_photo_url(@photo)
     else
-      render nothing: true, status: :unprocessable_entity
+      respond_with @photo.errors
     end
   end
 
