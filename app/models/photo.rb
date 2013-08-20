@@ -20,13 +20,15 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :image, :styles => {
     :medium => ['200x', :jpg],
+    :thumb => ['120x', :jpg],
     :small => ['50x', :jpg],
     :large => ['800x', :jpg]
   },
   :convert_options => {
     :medium => '-strip -gravity north -crop 200x300+0+0 +repage',
     :small => '-strip -gravity north -crop 50x50+0+0 +repage',
-    :large => '-strip'
+    :large => '-strip',
+    :thumb => '-strip -gravity north -crop 120x90+0+0 +repage'
   },
   :default_url => '/assets/user/default_:style.jpg',
   :url => "/system/:user_id/:class/:id/:style/:basename.:extension",
@@ -44,6 +46,7 @@ class Photo < ActiveRecord::Base
         small: { url: photo.url(:small), width: photo.image.width(:small), height: photo.image.height(:small) },
         medium: { url: photo.url(:medium), width: photo.image.width(:medium), height: photo.image.height(:medium) },
         large: { url: photo.url(:large), width: photo.image.width(:large), height: photo.image.height(:large) },
+        thumb: { url: photo.url(:thumb), width: photo.image.width(:thumb), height: photo.image.height(:thumb) }
       }
     }, :as => :image
   end

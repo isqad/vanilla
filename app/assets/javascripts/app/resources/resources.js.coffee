@@ -20,7 +20,7 @@ angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", 
     url: "/api/profile"
     name: "profile"
     serializer: railsSerializer ->
-      @exclude("id", "username", "avatar", "email")
+      @exclude("id", "username", "avatar", "email", "last_response_at")
 ])
 
 

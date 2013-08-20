@@ -20,6 +20,7 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  last_response_at       :datetime
 #
 
 require 'spec_helper'

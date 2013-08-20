@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    models:
+      community:
+        one: 'Community'
+        other: 'Community'

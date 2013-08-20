@@ -34,6 +34,17 @@ html {
   }
 }
 
+// Список пользователей
+.user-list {
+  .user-list_item {
+    margin: emCalc(10, 0);
+
+    .user-list_item_photo {
+      text-align: center;
+    }
+  }
+}
+
 #notifications {
   &.expose {
     -webkit-animation: 'expose' 5s;

@@ -20,6 +20,7 @@
 #  unconfirmed_email      :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  last_response_at       :datetime
 #
 
 class User < ActiveRecord::Base
@@ -49,9 +50,13 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => true, length: { in: 3..15 }, :uniqueness => true
 
-  delegate :first_name,  :last_name, :photo, :bio, :birthday, :gender, :avatar, :avatar_width, :avatar_height, :set_profile_photo, :to => :profile, :allow_nil => true
+  delegate :first_name,  :last_name, :photo, :bio, :birthday, :age, :gender, :avatar, :avatar_width, :avatar_height, :set_profile_photo, :to => :profile, :allow_nil => true
 
   accepts_nested_attributes_for :profile
+
+  scope :online, lambda { where('last_response_at > ?', 10.minutes.ago) }
+  scope :without_me, lambda { |me| where('id <> ?', me.id) }
+  scope :ordered, order('last_response_at IS NULL, last_response_at DESC')
 
   acts_as_api
 
@@ -67,11 +72,14 @@ class User < ActiveRecord::Base
         small: { url: u.avatar(:small), width: u.avatar_width(:small), height: u.avatar_height(:small) },
         medium: { url: u.avatar(:medium), width: u.avatar_width(:medium), height: u.avatar_height(:medium) },
         large: { url: u.avatar(:large), width: u.avatar_width(:large), height: u.avatar_height(:large) },
+        thumb: { url: u.avatar(:thumb), width: u.avatar_width(:thumb), height: u.avatar_height(:thumb) }
       }
     }, :as => :avatar
     t.add :bio
     t.add :gender
     t.add :birthday
+    t.add :last_response_at
+    t.add :age
   end
 
   api_accessible :user, :extend => :angular do |t|

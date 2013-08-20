@@ -33,6 +33,7 @@ class Profile < ActiveRecord::Base
     self.photo_image_width(size) || case size
       when :small then 50
       when :medium then 200
+      when :thumb then 120
       else 800
     end
   end
@@ -41,6 +42,7 @@ class Profile < ActiveRecord::Base
     self.photo_image_height(size) || case size
       when :small then 50
       when :medium then 200
+      when :thumb then 90
       else 800
     end
   end
@@ -50,5 +52,12 @@ class Profile < ActiveRecord::Base
       self.photo_image.destroy if self.photo_image.present?
       self.update_attributes!(:photo => photo)
     end
+  end
+
+  def age
+    return nil unless self.birthday.present?
+
+    now = Time.zone.now.to_date
+    now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
   end
 end

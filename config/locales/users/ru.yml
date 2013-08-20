@@ -5,7 +5,7 @@ ru:
         one: 'Пользователь'
         few: 'Пользователя'
         many: 'Пользователей'
-        other: 'Пользователи'
+        other: 'Люди'
     attributes:
       user:
         email: 'Email'
@@ -26,3 +26,5 @@ ru:
     leave_blank_password: 'Оставьте пустым, если не хотите изменять'
     unhappy: 'Не нравится сайт?'
     cancel_account: 'Удалить мой аккаунт'
+    all: 'Все'
+    online: 'Онлайн'

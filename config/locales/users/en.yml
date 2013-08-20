@@ -3,7 +3,7 @@ en:
     models:
       user:
         one: 'User'
-        other: 'Users'
+        other: 'People'
     attributes:
       user:
         email: 'Email'
@@ -24,3 +24,5 @@ en:
     leave_blank_password: 'leave blank if you do not want to change it'
     unhappy: 'Unhappy?'
     cancel_account: 'Cancel my account'
+    all: 'All'
+    online: 'Online'

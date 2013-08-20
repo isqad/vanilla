@@ -23,7 +23,7 @@ Vanilla::Application.routes.draw do
       resources :notifications, only: [ :index, :destroy ]
     end
 
-    resources :users, :only => [ :show ] do
+    resources :users, :only => [ :show, :index ] do
 
       resources :posts, :only => [ :index, :create, :destroy ] do
         member do

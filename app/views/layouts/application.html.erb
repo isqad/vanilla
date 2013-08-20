@@ -27,12 +27,24 @@
 
       <section class="top-bar-section">
         <ul class="left">
-          <li><a href="#"><i class="icon-envelope"></i> <%= t('activerecord.models.message.other') %></a></li>
-          <li><a href="#"><i class="icon-globe"></i> <%= t('activerecord.models.notification.other') %></a></li>
+          <li><a href="/#!/messages"><i class="icon-envelope"></i> <%= t('activerecord.models.message.other') %></a></li>
+          <li><a href="/#!/notifications"><i class="icon-globe"></i> <%= t('activerecord.models.notification.other') %></a></li>
         </ul>
 
         <ul class="right">
-          <li class="has-dropdown"><a href="#" ng-bind="current_user.fullname"></a>
+          <li>
+            <a href="/#!/users">
+              <i class="icon-user"></i>
+              <%= t('activerecord.models.user.other') %>
+            </a>
+          </li>
+          <li>
+            <a href="/#!/community">
+              <i class="icon-coffee"></i>
+              <%= t('activerecord.models.community.other') %>
+            </a>
+          </li>
+          <li class="has-dropdown"><a href="#" ng-bind="current_user.fullname"><%= current_user.fullname %></a>
             <ul class="dropdown">
               <li><a href="/#!/profile"><%= t('profiles.edit') %></a></li>
               <li><%= link_to t('profiles.settings'), edit_user_registration_path %></li>
@@ -45,6 +57,11 @@
 
     <%= yield %>
 
+    <%= javascript_include_tag 'i18n', '/javascripts/translations' %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
     <%= javascript_include_tag :application %>
     <script type="text/javascript">
       $(function(){

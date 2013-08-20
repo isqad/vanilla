@@ -29,9 +29,13 @@ gem 'workflow', '~> 1.0.0'
 # Meta search
 gem 'squeel', '~> 1.1.0'
 
+gem 'has_scope', '~> 0.5.1'
+
 gem 'russian', '~> 0.6.0'
 
 gem 'acts_as_paranoid', '~> 0.4.0'
+
+gem 'i18n-js', '~> 3.0.0.rc5'
 
 group :development do
   gem 'better_errors', '~> 0.7.2'

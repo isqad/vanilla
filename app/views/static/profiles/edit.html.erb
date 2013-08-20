@@ -25,6 +25,20 @@
         </div>
 
         <div class="row">
+          <div class="large-3 columns">
+            <label><%= t('activerecord.attributes.profile.gender') %></label>
+            <label for="input_male" class="left inline">
+              <input type="radio" id="input_male" name="gender" value="male" ng-model="current_user.gender" />
+              <%= t('profiles.gender.male') %>
+            </label>
+            <label for="input_female" class="right inline">
+              <input type="radio" id="input_female" name="gender" value="female" ng-model="current_user.gender" />
+              <%= t('profiles.gender.female') %>
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="large-12 columns">
             <label><%= t('activerecord.attributes.profile.bio') %></label>
             <textarea ng-model="current_user.bio" rows="4"></textarea>

@@ -17,7 +17,7 @@ angular.module("vanilla").controller "HomeCtrl", ($scope, Post) ->
   #  user_id: current_user.id
 
   # Create post
-  $scope.sendStatus = () ->
+  $scope.sendStatus = ->
 
     post = new Post(
       post: $scope.status_message

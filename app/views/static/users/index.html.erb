@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="large-12 columns user-list">
+    <h5><%= t('activerecord.models.user.other') %></h5>
+
+    <dl class="sub-nav">
+      <dd ng-class="{ active: !show_online }"><a ng-click="showOnline(false)"><%= t('users.all') %></a></dd>
+      <dd ng-class="{ active: show_online }"><a ng-click="showOnline(true)"><%= t('users.online') %></a></dd>
+    </dl>
+
+    <div class="user-list_item" ng-repeat="user in users">
+      <div class="row">
+        <div class="large-2 columns user-list_item_photo">
+          <a href="/#!/users/{{user.id}}" class="th radius">
+            <img ng-src="{{user.avatar.thumb.url}}" width="{{user.avatar.thumb.width}}" height="{{user.avatar.thumb.height}}" />
+          </a>
+        </div>
+        <div class="large-7 columns">
+          <i class="icon-{{user.gender}}"></i>
+          <span><a href="/#!/users/{{user.id}}">{{user.fullname}}</a></span>
+          <span ng-show="user.age != null">, {{user.age | yearsOld}}</span>
+        </div>
+        <div class="large-3 columns">
+          <span ng-show="user.last_response_at != null">{{user.last_response_at | timeAgo}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

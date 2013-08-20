@@ -21,4 +21,7 @@ en:
     edit: 'Edit profile'
     settings: 'Settings'
     main_info: 'Main info'
+    years_old:
+      one: 'year old'
+      other: 'years old'
 

@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    models:
+      community:
+        one: 'Сообщество'
+        few: 'Сообщества'
+        many: 'Сообществ'
+        other: 'Сообщества'
