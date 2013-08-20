@@ -12,7 +12,10 @@ class Api::UsersController < ApiController
   # GET /api/users/:id
   def show
     @user = User.find(params[:id])
-    respond_with @user, :api_template => :user
+
+    respond_to do |format|
+      format.json { render :json => UserDecorator.new(@user, context: { current_user: current_user }) }
+    end
   end
 
 end

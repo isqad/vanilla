@@ -5,6 +5,7 @@
         <img ng-src="{{user.avatar.medium.url}}" width="{{user.avatar.medium.width}}" height="{{user.avatar.medium.height}}" />
       </a>
       <ul class="side-nav">
+        <li><a ng-click="addToFriendList()"><i class="icon-plus"></i> <%= t('friendships.add') %></a></li>
         <li><a href="#"><i class="icon-group"></i> Friends</a></li>
         <li><a href="#"><i class="icon-camera-retro"></i> Photos</a></li>
         <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>

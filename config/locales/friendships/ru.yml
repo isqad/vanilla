@@ -1,5 +1,5 @@
 ru:
-  mongoid:
+  activerecord:
     errors:
       messages:
         can_not_to_add_self_to_friend_list: 'Нельзя добавить себя в свой же список друзей'
@@ -8,3 +8,5 @@ ru:
           attributes:
             friend:
               can_not_to_add_self_to_friend_list: 'Нельзя добавить себя в свой же список друзей'
+  friendships:
+    add: 'Добавить в друзья'

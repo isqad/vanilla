@@ -23,6 +23,12 @@ angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", 
       @exclude("id", "username", "avatar", "email", "last_response_at")
 ])
 
+angular.module("vanilla.resources").factory("Friendship", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/users/{{user_id}}/friendships/{{id}}"
+    name: "friendship"
+])
+
 
 ###
 ).factory("Friendship", ($resource) ->

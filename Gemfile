@@ -37,6 +37,9 @@ gem 'acts_as_paranoid', '~> 0.4.0'
 
 gem 'i18n-js', '~> 3.0.0.rc5'
 
+# Model decorators
+gem 'draper', '~> 1.0'
+
 group :development do
   gem 'better_errors', '~> 0.7.2'
   gem 'letter_opener', '~> 1.1.0'
