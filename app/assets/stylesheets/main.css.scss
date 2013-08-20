@@ -32,6 +32,15 @@ html {
     text-align: center;
     margin: emCalc(10, 0);
   }
+
+  // Блок информации о пользователе
+  .user-posts_profile {
+    padding: emCalc(10, 0);
+
+    .user-posts_profile_field {
+      margin-bottom: emCalc(10);
+    }
+  }
 }
 
 // Список пользователей

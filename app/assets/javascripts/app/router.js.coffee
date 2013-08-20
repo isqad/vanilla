@@ -13,6 +13,10 @@ angular.module("vanilla").config ($routeProvider) ->
 
     templateUrl: "/static/users/index",
     controller: "UsersIndexCtrl"
+  ).when("/users/:user_id",
+
+    templateUrl: "/static/users/show",
+    controller: "UsersShowCtrl"
 
   ).otherwise
     redirectTo: "/home"

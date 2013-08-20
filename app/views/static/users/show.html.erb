@@ -1,52 +1,69 @@
 <div class="row">
-  <div class="span3">
-    <div class="user-info">
-
-      <a href="/#!/u/{{user.id}}" class="user-link">
-        <img data-ng-src="{{user.avatar.medium.url}}" width="{{user.avatar.medium.width}}" height="{{user.avatar.medium.height}}" class="img-polaroid" />
+  <div class="large-3 columns">
+    <div class="user-sidebar">
+      <a href="/#!/users/{{user.id}}" class="th radius">
+        <img ng-src="{{user.avatar.medium.url}}" width="{{user.avatar.medium.width}}" height="{{user.avatar.medium.height}}" />
       </a>
-
-      <a href="/static/messages/new.html" class="btn btn-primary message-box" data-colorbox-send-message="sendMessage" data-colorbox-discussion="discussion" data-colorbox-friends="friends">
-        New message
-      </a>
-
-      <div class="info" data-ng-show="user.bio.length">
-        <h3>About</h3>
-        <span>{{user.bio}}</span>
-      </div>
+      <ul class="side-nav">
+        <li><a href="#"><i class="icon-group"></i> Friends</a></li>
+        <li><a href="#"><i class="icon-camera-retro"></i> Photos</a></li>
+        <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>
+      </ul>
     </div>
   </div>
+  <div class="large-9 columns">
+    <div class="user-posts">
+      <h5 class="subheader"><a href="/#!/users/{{user.id}}" class="user-posts_title">{{user.fullname}}</a></h5>
 
-  <div class="span9">
-    <div class="clearfix">
-      <div class="user-name pull-left">
-        <h2>{{user.fullname}}</h2>
-      </div>
+      <div class="user-posts_profile">
 
-      <div class="pull-right">
-        <div class="friendStatus" data-ng-switch="" data-on="user.friend">
-          <button type="button" class="btn btn-success friendStatus__add" data-ng-click="addToFriends()" data-ng-switch-when="false">
-            <i class="icon icon-plus icon-white"></i>
-            Add to friend list
-          </button>
-
-          <button type="button" class="btn btn-success friendStatus__add" data-ng-click="approveToFriends()" data-ng-switch-when="waiting">
-            <i class="icon icon-ok icon-white"></i>
-            Approve to be added to friend list
-          </button>
-
-          <div class="friendStatus__pending" data-ng-switch-when="pending">
-            Pending to be added to friend list
+        <div class="row user-posts_profile_field">
+          <div class="large-3 columns">
+            <b><%= t('activerecord.attributes.user.status') %>:</b>
           </div>
-
-          <div class="friendStatus__friends" data-ng-switch-when="friend">
-            You are friends
+          <div class="large-9 columns">
+            <span ng-class="{success: user.online, secondary: !user.online, label: true}" ng-switch on="user.online">
+              <span ng-switch-when="true">{{"users.online" | translate}}</span>
+              <span ng-switch-default>{{"users.offline" | translate}}</span>
+            </span>
           </div>
         </div>
-      </div>
-    </div>
 
-    <h3>Stream</h3>
-    <%= render 'static/partials/wall' %>
+        <div class="row user-posts_profile_field" ng-show="user.age != null && user.age > 0">
+          <div class="large-3 columns">
+            <b><%= t('activerecord.attributes.profile.age') %>:</b>
+          </div>
+          <div class="large-9 columns">
+            {{user.age | yearsOld}}
+          </div>
+        </div>
+
+        <div class="row user-posts_profile_field">
+          <div class="large-3 columns">
+            <b><%= t('activerecord.attributes.profile.gender') %>:</b>
+          </div>
+          <div class="large-9 columns">
+            {{"profiles.gender." + user.gender | translate}}
+          </div>
+        </div>
+
+        <div class="row user-posts_profile_field" ng-show="user.bio != null && user.bio.length > 0">
+          <div class="large-3 columns">
+            <b><%= t('activerecord.attributes.profile.bio') %>:</b>
+          </div>
+          <div class="large-9 columns">
+            {{user.bio}}
+          </div>
+        </div>
+
+      </div>
+
+      <form name="postForm" ng-submit="sendWallMessage()" class="user-posts_form">
+        <textarea ng-model="message_wall.body" ui-keydown="{ 'ctrl-13': 'sendWallMessage()' }" class="user-posts_form_input"></textarea>
+        <button type="submit" class="button small"><%= t('posts.send') %></button>
+      </form>
+
+      <%= render 'static/partials/wall' %>
+    </div>
   </div>
 </div>

@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
     t.add :birthday
     t.add :last_response_at
     t.add :age
+    t.add :online
   end
 
   api_accessible :user, :extend => :angular do |t|
@@ -96,6 +97,11 @@ class User < ActiveRecord::Base
 
   def fullname
     "#{first_name} #{username} #{last_name}".strip
+  end
+
+  def online
+    return false unless self.last_response_at.present?
+    self.last_response_at > 10.minutes.ago
   end
 
 end

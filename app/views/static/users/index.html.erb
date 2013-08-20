@@ -18,6 +18,9 @@
           <i class="icon-{{user.gender}}"></i>
           <span><a href="/#!/users/{{user.id}}">{{user.fullname}}</a></span>
           <span ng-show="user.age != null">, {{user.age | yearsOld}}</span>
+
+          <p>{{user.bio}}</p>
+
         </div>
         <div class="large-3 columns">
           <span ng-show="user.last_response_at != null">{{user.last_response_at | timeAgo}}</span>

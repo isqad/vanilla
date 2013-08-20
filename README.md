@@ -2,7 +2,7 @@
 
 Vanilla is a open source social network.
 
-![screen](https://raw.github.com/isqad88/vanilla/master/doc/screen.jpg)
+![screen](https://raw.github.com/isqad88/vanilla/development/doc/screen.jpg)
 
 #### Features
 
