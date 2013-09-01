@@ -1,2 +1,3 @@
-angular.module("vanilla").controller "MessageCtrl", ($scope) ->
-  return
+angular.module("vanilla").controller "MessageCtrl", ["$scope", ($scope) ->
+
+]

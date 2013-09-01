@@ -1,4 +1,4 @@
-angular.module("vanilla").directive "messageBox", ($http, $compile) ->
+angular.module("vanilla").directive "messageBox", [ "$http", "$compile", ($http, $compile) ->
   restrict: "CA"
   scope:
     oncomplete: "&"
@@ -30,3 +30,4 @@ angular.module("vanilla").directive "messageBox", ($http, $compile) ->
         optionsObj.html = $compile(data)(scope)
 
         $.colorbox optionsObj
+]

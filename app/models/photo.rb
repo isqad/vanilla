@@ -19,13 +19,13 @@ class Photo < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :image, :styles => {
-    :medium => ['200x', :jpg],
+    :medium => ['220x', :jpg],
     :thumb => ['120x', :jpg],
     :small => ['50x', :jpg],
     :large => ['800x', :jpg]
   },
   :convert_options => {
-    :medium => '-strip -gravity north -crop 200x300+0+0 +repage',
+    :medium => '-strip -gravity north -crop 220x340+0+0 +repage',
     :small => '-strip -gravity north -crop 50x50+0+0 +repage',
     :large => '-strip',
     :thumb => '-strip -gravity north -crop 120x90+0+0 +repage'

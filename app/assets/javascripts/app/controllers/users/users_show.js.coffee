@@ -1,4 +1,4 @@
-angular.module("vanilla").controller "UsersShowCtrl", ($scope, $routeParams, User, Post, Friendship) ->
+angular.module("vanilla").controller "UsersShowCtrl", [ "$scope", "$routeParams", "User", "Post", "Friendship", ($scope, $routeParams, User, Post, Friendship) ->
 
   current_user = $scope.current_user
   user_id = $routeParams.user_id
@@ -51,3 +51,7 @@ angular.module("vanilla").controller "UsersShowCtrl", ($scope, $routeParams, Use
     friendship.create().then (friendship) ->
       User.get(user_id).then (user) ->
         $scope.user = user
+
+  $scope.removeFromFriendList = ->
+
+]

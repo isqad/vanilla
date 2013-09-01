@@ -10,3 +10,12 @@ ru:
               can_not_to_add_self_to_friend_list: 'Нельзя добавить себя в свой же список друзей'
   friendships:
     add: 'Добавить в друзья'
+    remove: 'Удалить предложение дружбы'
+    accept: 'Принять дружбу'
+    reject: 'Оставить в подписчиках'
+    statuses:
+      pending: 'еще не принял(а) дружбу'
+      friends: 'Вы друзья'
+      subscriber: 'подписан(а) на ваши обновления'
+    inverse_statuses:
+      pending: 'хочет дружить с вами'

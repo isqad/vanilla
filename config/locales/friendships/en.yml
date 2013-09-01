@@ -10,3 +10,12 @@ en:
               can_not_to_add_self_to_friend_list: 'Can not to add self to friend list'
   friendships:
     add: 'Add to friend list'
+    remove: 'Remove from friend list'
+    accept: 'Accept friendship'
+    reject: 'Leave in subscribers'
+    statuses:
+      pending: 'has not made a friendship'
+      friends: 'You are friends'
+      subscriber: 'subscribed to your updates'
+    inverse_statuses:
+      pending: 'wants to be friends with you'

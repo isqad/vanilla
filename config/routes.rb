@@ -31,7 +31,7 @@ Vanilla::Application.routes.draw do
         end
       end
 
-      resource :friendship, :only => [ :create, :update, :destroy ]
+      resources :friendships, :only => [ :create, :update, :destroy ]
     end
 
     resource :search, only: [ :show ], :controller => 'search'

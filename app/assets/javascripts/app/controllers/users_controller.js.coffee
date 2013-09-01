@@ -1,4 +1,4 @@
-angular.module("vanilla").controller "UserCtrl", ($scope, $routeParams, User, Friendship, Post, Discussion) ->
+angular.module("vanilla").controller "UserCtrl", ["$scope", "$routeParams", "User", "Friendship", "Post", "Discussion", ($scope, $routeParams, User, Friendship, Post, Discussion) ->
 
   current_user = $scope.current_user
   user_id = $routeParams.user_id
@@ -57,3 +57,4 @@ angular.module("vanilla").controller "UserCtrl", ($scope, $routeParams, User, Fr
       discussion: discussion
     , (response) ->
       console.log response
+]

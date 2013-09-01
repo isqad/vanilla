@@ -54,6 +54,19 @@ html {
   }
 }
 
+// Меню пользователя
+.user-sidebar {
+  a.button {
+    color: #fff;
+    &.secondary {
+      color: #ccc;
+      &:hover {
+        color: $body-font-color;
+      }
+    }
+  }
+}
+
 #notifications {
   &.expose {
     -webkit-animation: 'expose' 5s;

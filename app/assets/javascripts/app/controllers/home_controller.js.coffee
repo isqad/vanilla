@@ -1,4 +1,4 @@
-angular.module("vanilla").controller "HomeCtrl", ($scope, Post) ->
+angular.module("vanilla").controller "HomeCtrl", [ "$scope", "Post", ($scope, Post) ->
 
   current_user = $scope.current_user
 
@@ -41,3 +41,4 @@ angular.module("vanilla").controller "HomeCtrl", ($scope, Post) ->
       $scope.posts = jQuery.map $scope.posts, (item) ->
         item.deleted_at = null if item.id is post.id
         return item
+]

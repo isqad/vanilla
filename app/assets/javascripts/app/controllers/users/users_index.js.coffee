@@ -1,4 +1,4 @@
-angular.module("vanilla").controller "UsersIndexCtrl", ($scope, User) ->
+angular.module("vanilla").controller "UsersIndexCtrl", ["$scope", "User", ($scope, User) ->
 
   $scope.show_online = false
 
@@ -12,3 +12,4 @@ angular.module("vanilla").controller "UsersIndexCtrl", ($scope, User) ->
     ).then (users) ->
       $scope.users = users
       $scope.show_online = bool
+]

@@ -1,4 +1,4 @@
-angular.module("vanilla").config ($routeProvider) ->
+angular.module("vanilla").config [ "$routeProvider", ($routeProvider) ->
   $routeProvider.when("/home",
 
     templateUrl: "/static/home/index"
@@ -20,3 +20,4 @@ angular.module("vanilla").config ($routeProvider) ->
 
   ).otherwise
     redirectTo: "/home"
+]

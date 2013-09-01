@@ -1,4 +1,4 @@
-angular.module("vanilla").controller "ProfileCtrl", ($scope, $http) ->
+angular.module("vanilla").controller "ProfileCtrl", [ "$scope", "$http", ($scope, $http) ->
 
   $scope.save = ->
     $scope.current_user.$put("/api/profile").then (user) ->
@@ -26,5 +26,4 @@ angular.module("vanilla").controller "ProfileCtrl", ($scope, $http) ->
       text: "Failed upload"
 
     $scope.upload_progress = 0
-
-
+]

@@ -16,8 +16,9 @@ class Friendship < ActiveRecord::Base
   attr_accessible :friend_id, :owner_id, :state
 
   belongs_to :owner, :class_name => 'User'
-  belongs_to :friend, :class_name => 'User'
+  belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'
 
+  validates :owner_id, :friend_id, :presence => true
   validates :owner_id, :uniqueness => { scope: :friend_id }
   validate :reject_self
 

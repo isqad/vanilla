@@ -1,4 +1,4 @@
-angular.module("vanilla").directive "onSearch", ($location) ->
+angular.module("vanilla").directive "onSearch", [ "$location", ($location) ->
   (scope, element) ->
     element.on "keydown", (event) ->
       if event.which == 13 and element.val().length > 3
@@ -10,3 +10,4 @@ angular.module("vanilla").directive "onSearch", ($location) ->
           $location.url("/search?q=" + query)
 
         event.preventDefault()
+]

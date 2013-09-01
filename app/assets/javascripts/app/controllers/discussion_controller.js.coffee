@@ -1,2 +1,3 @@
-angular.module("vanilla").controller "DiscussionCtrl", ($scope) ->
-  return
+angular.module("vanilla").controller "DiscussionCtrl", [ "$scope", ($scope) ->
+
+]
