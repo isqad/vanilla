@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '= 3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', '~> 0.16.0'
 
-gem 'devise', '~> 2.2.3'
+# Auth
+gem 'authlogic', '~> 3.3.0'
 
 gem 'simple_form', '~> 2.1.0'
 

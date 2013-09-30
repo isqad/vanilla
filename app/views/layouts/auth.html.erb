@@ -28,6 +28,7 @@
 
     <div class="row">
       <div class="large-12 columns">
+        <%= debug flash %>
         <%= render('shared/notice', :notice => notice) if notice.present? %>
         <%= render('shared/alert', :alert => alert) if alert.present? %>
       </div>

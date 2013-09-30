@@ -1,20 +1,5 @@
 Vanilla::Application.routes.draw do
 
-  devise_for :users,
-             controllers: {
-                 sessions: 'sessions',
-                 registrations: 'registrations',
-                 passwords: 'passwords',
-                 unlocks: 'unlocks',
-                 confirmations: 'confirmations'
-             },
-             path: 'user',
-             path_names: {
-                 sign_in: 'login',
-                 sign_out: 'logout',
-                 sign_up: 'register'
-             }
-
   # API v1
   namespace :api, defaults: { format: :json } do
     resources :photos, only: [ :create, :show ]
@@ -45,10 +30,5 @@ Vanilla::Application.routes.draw do
     match '*path' => 'templates#show'
   end
 
-  authenticated :user do
-    root :to => 'pages#home', :as => :authenticated_root
-  end
-
-  root :to => redirect('/user/login')
-
+  root :to => 'pages#home'
 end
