@@ -1,5 +1,7 @@
 Vanilla::Application.routes.draw do
 
+  resource :user_session, :only => [ :new, :create, :destroy ]
+
   # API v1
   namespace :api, defaults: { format: :json } do
     resources :photos, only: [ :create, :show ]
@@ -30,5 +32,12 @@ Vanilla::Application.routes.draw do
     match '*path' => 'templates#show'
   end
 
-  root :to => 'pages#home'
+  # For logged in user
+  constraints(LoggedInConstraint) do
+    root :to => 'pages#home', :as => :authenticated_root
+  end
+
+  # Redirect to login form by default
+  root :to => 'user_sessions#new'
+
 end

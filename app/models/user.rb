@@ -9,6 +9,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  last_response_at   :datetime
+#  persistence_token  :string(255)      not null
 #
 
 class User < ActiveRecord::Base
@@ -38,7 +39,10 @@ class User < ActiveRecord::Base
   scope :without_me, lambda { |me| where('id <> ?', me.id) }
   scope :ordered, order('last_response_at IS NULL, last_response_at DESC')
 
-  acts_as_authentic
+  acts_as_authentic do |config|
+    # Login via email
+    config.login_field = :email
+  end
 
   acts_as_api
 

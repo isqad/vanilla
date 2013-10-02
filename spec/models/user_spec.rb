@@ -9,6 +9,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  last_response_at   :datetime
+#  persistence_token  :string(255)      not null
 #
 
 require 'spec_helper'
