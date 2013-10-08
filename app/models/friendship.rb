@@ -19,7 +19,7 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'
 
   validates :owner_id, :friend_id, :presence => true
-  validates :owner_id, :uniqueness => { scope: :friend_id }
+  validates :owner_id, :uniqueness => { :scope => :friend_id }
   validate :reject_self
 
   workflow_column :state
@@ -32,8 +32,22 @@ class Friendship < ActiveRecord::Base
     state :friends
   end
 
+  after_save :notification
+
   private
   def reject_self
     errors.add(:friend, :can_not_to_add_self_to_friend_list) if self.owner == self.friend
+  end
+
+  def notification
+    return true if self.subscriber?
+
+    notify = if self.pending?
+      I18n.t('notifications.user_wants_to_add_you_as_a_friend', :username => owner.fullname)
+    elsif self.friends?
+      I18n.t('notifications.user_has_added_you_as_a_friend', :username => user.fullname)
+    end
+
+    friend.notifications.create!(:from => owner, :notify => notify)
   end
 end

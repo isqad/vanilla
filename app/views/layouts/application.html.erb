@@ -48,7 +48,7 @@
             <ul class="dropdown">
               <li><a href="/#!/profile"><%= t('profiles.edit') %></a></li>
               <li><%= link_to t('profiles.settings'), '#' %></li>
-              <li><%= link_to t('users.sign_out'), '#' %></li>
+              <li><%= link_to t('users.sign_out'), user_session_path, :method => :delete %></li>
             </ul>
           </li>
         </ul>

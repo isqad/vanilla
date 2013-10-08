@@ -26,6 +26,6 @@ module Concerns
       end
     end
 
-    private :current_user_session, :current_user, :require_user, :require_no_user
+    private :current_user_session, :require_user, :require_no_user
   end
 end

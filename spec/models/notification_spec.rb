@@ -19,7 +19,7 @@ describe Notification do
 
   it 'should send notification to friend' do
     expect {
-      user.friendships.create!(friend: friend)
+      user.friendships.create!(:friend_id => friend.id)
     }.to change{Notification.count}.by(1)
   end
 
