@@ -1,5 +1,7 @@
 ### Vanilla
 
+[![Build Status](https://travis-ci.org/isqad88/vanilla.png?branch=development)](https://travis-ci.org/isqad88/vanilla)
+
 Vanilla is a open source social network.
 
 ![screen](https://raw.github.com/isqad88/vanilla/development/doc/screen.jpg)
