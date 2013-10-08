@@ -1,7 +1,8 @@
 Vanilla::Application.routes.draw do
 
   resource :user_session, :only => [ :new, :create, :destroy ]
-  resource :password, :only => [ :new, :create ]
+  resource :password, :only => [ :new, :create, :edit, :update ]
+  resource :registration, :only => [ :new, :create ]
 
   # API v1
   namespace :api, defaults: { format: :json } do

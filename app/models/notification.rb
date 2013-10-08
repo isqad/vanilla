@@ -12,6 +12,8 @@
 
 class Notification < ActiveRecord::Base
 
+  attr_accessible :from, :notify
+
   belongs_to :user
   belongs_to :from, :class_name => 'User', :foreign_key => 'from_id'
 

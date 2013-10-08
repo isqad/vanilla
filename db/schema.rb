@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002050225) do
+ActiveRecord::Schema.define(:version => 20131008090201) do
 
   create_table "discussions", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -108,9 +108,11 @@ ActiveRecord::Schema.define(:version => 20131002050225) do
     t.datetime "updated_at",                         :null => false
     t.datetime "last_response_at"
     t.string   "persistence_token",                  :null => false
+    t.string   "perishable_token",   :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

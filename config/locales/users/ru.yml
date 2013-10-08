@@ -30,7 +30,9 @@ ru:
     all: 'Все'
     online: 'Онлайн'
     offline: 'Оффлайн'
+    change_password: 'Изменить пароль'
     failure:
         invalid: 'Неверный email или пароль'
     passwords:
         send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
+        change_success: 'Пароль успешно изменен'

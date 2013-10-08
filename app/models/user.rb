@@ -14,7 +14,7 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :email, :username
+  attr_accessible :email, :username, :password, :password_confirmation
 
   has_one :profile, :dependent => :destroy
 
@@ -93,7 +93,8 @@ class User < ActiveRecord::Base
   end
 
   def deliver_password_instructions!
-
+    reset_perishable_token!
+    Notifier.reset_password_instructions(self).deliver
   end
 
 end

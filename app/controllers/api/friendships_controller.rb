@@ -16,18 +16,18 @@ class Api::FriendshipsController < ApiController
 
   # PUT /api/users/:user_id/friendships/:id
   def update
-    @friendship = current_user.friendships.find(params[:id])
+    @friendship = @user.friendships.find(params[:id])
 
-    render(:nothing => true, :status => :bad_request) and return unless %w(reject accept).include? params[:state]
+    render(:nothing => true, :status => :bad_request) and return unless %w(reject accept).include? params[:friendship][:state]
 
-    @friendship.send("#{params[:state]}!".to_sym)
+    @friendship.send("#{params[:friendship][:state]}!".to_sym)
 
     respond_with @friendship, :location => nil
   end
 
   # DELETE /api/users/:user_id/friendships/:id
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
+    @friendship = Friendship.find(params[:id])
 
     @friendship.destroy
 

@@ -6,7 +6,7 @@
       </a>
       <ul class="side-nav">
         <!-- You are looking User page //-->
-        <li ng-switch on="user.friendship_status" ng-show="user.inverse_friendship_status == null">
+        <li ng-switch on="user.friendship_status" ng-show="user.inverse_friendship_status != 'pending'">
 
           <span ng-switch-when="pending">{{user.username}} <%= t('friendships.statuses.pending') %></span>
           <span ng-switch-when="friends"><%= t('friendships.statuses.friends') %></span>
@@ -21,16 +21,16 @@
         </li>
 
         <li ng-show="user.inverse_friendship_status == 'pending'">
-          <a ng-click="acceptFriendList()" class="button small success"><i class="icon-ok"></i> <%= t('friendships.accept') %></a>
+          <a ng-click="acceptFriendList(user.friendship_id)" class="button small success"><i class="icon-ok"></i> <%= t('friendships.accept') %></a>
         </li>
 
         <li ng-show="user.inverse_friendship_status == 'pending'">
-          <a ng-click="rejectFriendList()" class="button small secondary"><i class="icon-minus"></i> <%= t('friendships.reject') %></a>
+          <a ng-click="rejectFriendList(user.friendship_id)" class="button small secondary"><i class="icon-minus"></i> <%= t('friendships.reject') %></a>
         </li>
 
         <!-- Remove Friendship //-->
-        <li ng-show="user.friendship_status != null">
-          <a ng-click="removeFromFriendList()"><i class="icon-minus"></i> <%= t('friendships.remove') %></a>
+        <li ng-show="user.friendship_status != null && user.friendship_status != 'subscriber'">
+          <a ng-click="removeFromFriendList(user.friendship_id)"><i class="icon-minus"></i> <%= t('friendships.remove') %></a>
         </li>
 
         <li><a href="#"><i class="icon-group"></i> Friends</a></li>

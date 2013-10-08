@@ -52,6 +52,33 @@ angular.module("vanilla").controller "UsersShowCtrl", [ "$scope", "$routeParams"
       User.get(user_id).then (user) ->
         $scope.user = user
 
-  $scope.removeFromFriendList = ->
+  $scope.removeFromFriendList = (friendship_id) ->
+    friendship = new Friendship
+    friendship.user_id = $scope.user.id
+    friendship.id = friendship_id
+
+    friendship.delete().then ->
+      User.get(user_id).then (user) ->
+        $scope.user = user
+
+  $scope.acceptFriendList = (friendship_id) ->
+    friendship = new Friendship
+    friendship.user_id = $scope.user.id
+    friendship.id = friendship_id
+    friendship.state = "accept"
+
+    friendship.update().then (friendship) ->
+      User.get(user_id).then (user) ->
+        $scope.user = user
+
+  $scope.rejectFriendList = (friendship_id) ->
+    friendship = new Friendship
+    friendship.user_id = $scope.user.id
+    friendship.id = friendship_id
+    friendship.state = "reject"
+
+    friendship.update().then (friendship) ->
+      User.get(user_id).then (user) ->
+        $scope.user = user
 
 ]

@@ -28,7 +28,9 @@ en:
     all: 'All'
     online: 'Online'
     offline: 'Offline'
+    change_password: 'Change password'
     failure:
         invalid: 'Invalid email or password.'
     passwords:
         send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
+        change_success: 'Password has changed successfully'

@@ -1,0 +1,7 @@
+<%= simple_form_for @user, :url => password_path(:token => params[:token]), :method => :put, :html => { :class => 'form_vertical' } do |f| %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <%= f.submit t('users.change_password'), :class => 'button small' %>
+  <%= link_to t('users.sign_in'), new_user_session_path, :class => 'button small secondary' %>
+<% end %>
