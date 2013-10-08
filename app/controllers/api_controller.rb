@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :require_user
   after_filter :user_activity
 
   self.responder = ActsAsApi::Responder

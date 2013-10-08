@@ -4,6 +4,7 @@ class Api::FriendshipsController < ApiController
 
   # POST /api/users/:user_id/friendships
   def create
+
     @friendship = current_user.friendships.build(:friend_id => @user.id)
 
     if @friendship.save

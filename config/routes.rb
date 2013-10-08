@@ -1,19 +1,6 @@
 Vanilla::Application.routes.draw do
 
-  devise_for :users,
-             controllers: {
-                 sessions: 'sessions',
-                 registrations: 'registrations',
-                 passwords: 'passwords',
-                 unlocks: 'unlocks',
-                 confirmations: 'confirmations'
-             },
-             path: 'user',
-             path_names: {
-                 sign_in: 'login',
-                 sign_out: 'logout',
-                 sign_up: 'register'
-             }
+  resource :user_session, :only => [ :new, :create, :destroy ]
 
   # API v1
   namespace :api, defaults: { format: :json } do
@@ -45,10 +32,12 @@ Vanilla::Application.routes.draw do
     match '*path' => 'templates#show'
   end
 
-  authenticated :user do
+  # For logged in user
+  constraints(LoggedInConstraint) do
     root :to => 'pages#home', :as => :authenticated_root
   end
 
-  root :to => redirect('/user/login')
+  # Redirect to login form by default
+  root :to => 'user_sessions#new'
 
 end

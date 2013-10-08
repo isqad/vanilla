@@ -47,8 +47,8 @@
           <li class="has-dropdown"><a href="#" ng-bind="current_user.fullname"><%= current_user.fullname %></a>
             <ul class="dropdown">
               <li><a href="/#!/profile"><%= t('profiles.edit') %></a></li>
-              <li><%= link_to t('profiles.settings'), edit_user_registration_path %></li>
-              <li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to t('profiles.settings'), '#' %></li>
+              <li><%= link_to t('users.sign_out'), user_session_path, :method => :delete %></li>
             </ul>
           </li>
         </ul>
