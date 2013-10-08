@@ -18,6 +18,9 @@ angular.module("vanilla").config [ "$routeProvider", ($routeProvider) ->
     templateUrl: "/static/users/show",
     controller: "UsersShowCtrl"
 
+  ).when("/discussions",
+    templateUrl: "/static/discussions/index"
+    controller: "DiscussionsIndexCtrl"
   ).otherwise
     redirectTo: "/home"
 ]

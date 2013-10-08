@@ -1,6 +1,6 @@
-angular.module("vanilla").controller "HomeCtrl", [ "$scope", "Post", ($scope, Post) ->
+angular.module("vanilla").controller "HomeCtrl", ["$rootScope", "$scope", "Post", ($rootScope, $scope, Post) ->
 
-  current_user = $scope.current_user
+  current_user = $rootScope.current_user
 
   $scope.status_message =
     body: ""

@@ -1,6 +1,7 @@
-angular.module("vanilla").controller "UsersShowCtrl", [ "$scope", "$routeParams", "User", "Post", "Friendship", ($scope, $routeParams, User, Post, Friendship) ->
+app = angular.module("vanilla")
+app.controller "UsersShowCtrl", ["$rootScope", "$scope", "$routeParams", "User", "Post", "Friendship", ($rootScope, $scope, $routeParams, User, Post, Friendship) ->
 
-  current_user = $scope.current_user
+  current_user = $rootScope.current_user
   user_id = $routeParams.user_id
 
   $scope.message_wall =

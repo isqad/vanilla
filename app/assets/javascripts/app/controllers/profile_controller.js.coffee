@@ -1,15 +1,15 @@
-angular.module("vanilla").controller "ProfileCtrl", [ "$scope", "$http", ($scope, $http) ->
+angular.module("vanilla").controller "ProfileCtrl", ["$rootScope", "$scope", "$http", ($rootScope, $scope, $http) ->
 
   $scope.save = ->
-    $scope.current_user.$put("/api/profile").then (user) ->
-      $scope.current_user = user
+    $rootScope.current_user.$put("/api/profile").then (user) ->
+      $rootScope.current_user = user
       $(document).flash_message
         text: "Profile was updated"
 
 
   $scope.uploadFinished = (event, data) ->
 
-    $scope.current_user.avatar = data.result.image
+    $rootScope.current_user.avatar = data.result.image
 
     $(document).flash_message
       text: "You look amazing"
