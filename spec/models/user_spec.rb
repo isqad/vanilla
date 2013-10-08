@@ -55,4 +55,9 @@ describe User do
     User.new.profile.should_not be_nil
   end
 
+  describe '#deliver_password_instructions!' do
+    it 'send reset password instructions by email'
+    it 'generate new reset password token'
+  end
+
 end

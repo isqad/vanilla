@@ -1,0 +1,6 @@
+<%= simple_form_for @user, :url => password_path, :html => { :class => 'form_vertical' } do |f| %>
+  <%= f.input :email %>
+
+  <%= f.submit t('users.send_me_reset'), :class => 'button small' %>
+  <%= link_to t('users.sign_in'), new_user_session_path, :class => 'button small secondary' %>
+<% end %>

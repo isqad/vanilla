@@ -92,4 +92,8 @@ class User < ActiveRecord::Base
     self.last_response_at > 10.minutes.ago
   end
 
+  def deliver_password_instructions!
+
+  end
+
 end
