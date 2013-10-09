@@ -13,7 +13,7 @@
 class Friendship < ActiveRecord::Base
   include Workflow
 
-  attr_accessible :friend_id, :owner_id, :state
+  attr_accessible :friend_id, :owner_id, :state, :friend
 
   belongs_to :owner, :class_name => 'User'
   belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'

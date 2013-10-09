@@ -11,15 +11,17 @@ class Discussion < ActiveRecord::Base
 
   attr_accessible :messages_attributes, :speakers_attributes
 
-  has_many :speakers, dependent: :destroy
-  has_many :messages, dependent: :destroy
+  has_many :speakers, :dependent => :destroy
+  has_many :users, :through => :speakers
+
+  has_many :messages, :dependent => :destroy
 
   accepts_nested_attributes_for :messages, :speakers
 
   acts_as_api
   api_accessible :angular do |t|
     t.add :id
-    t.add :speakers
+    t.add :users
   end
 
   def self.find_between_users(user, user2)

@@ -2,7 +2,7 @@ require 'authlogic/controller_adapters/rack_adapter'
 
 class AuthlogicRackAdapter < Authlogic::ControllerAdapters::RackAdapter
   def cookie_domain
-    'localhost'
+    controller.host
   end
 
   def cookies

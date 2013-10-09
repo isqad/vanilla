@@ -1,12 +1,14 @@
 angular.module("vanilla.resources", ["rails"])
 
-angular.module("vanilla.resources").factory("User", ["railsResourceFactory", (railsResourceFactory) ->
+app = angular.module("vanilla.resources")
+
+app.factory("User", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/users"
     name: "user"
 ])
 
-angular.module("vanilla.resources").factory("Post", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+app.factory("Post", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   resource = railsResourceFactory
     url: "/api/users/{{user_id}}/posts/{{id}}"
     name: "post"
@@ -15,7 +17,7 @@ angular.module("vanilla.resources").factory("Post", ["railsResourceFactory", "ra
   return resource
 ])
 
-angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+app.factory("Profile", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   railsResourceFactory
     url: "/api/profile"
     name: "profile"
@@ -23,10 +25,22 @@ angular.module("vanilla.resources").factory("Profile", ["railsResourceFactory", 
       @exclude("id", "username", "avatar", "email", "last_response_at")
 ])
 
-angular.module("vanilla.resources").factory("Friendship", ["railsResourceFactory", (railsResourceFactory) ->
+app.factory("Friendship", ["railsResourceFactory", (railsResourceFactory) ->
   railsResourceFactory
     url: "/api/users/{{user_id}}/friendships/{{id}}"
     name: "friendship"
+])
+
+app.factory("Friend", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/friendships"
+    name: "friend"
+])
+
+app.factory("Discussion", ["railsResourceFactory", (railsResourceFactory) ->
+  railsResourceFactory
+    url: "/api/discussions"
+    name: "discussions"
 ])
 
 

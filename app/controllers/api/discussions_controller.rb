@@ -4,7 +4,7 @@ class Api::DiscussionsController < ApiController
   def index
     @discussions = current_user.discussions
 
-    respond_with @discussions, api_template: :angular
+    respond_with @discussions, :api_template => :angular
   end
 
   # POST /api/discussions

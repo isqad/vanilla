@@ -23,6 +23,8 @@ Vanilla::Application.routes.draw do
       resources :friendships, :only => [ :create, :update, :destroy ]
     end
 
+    resources :friendships, :only => [ :index ]
+
     resource :search, only: [ :show ], :controller => 'search'
 
     resources :discussions, only: [ :index, :create ]

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe RegistrationsController do
 
   let!(:subject) { response }
 

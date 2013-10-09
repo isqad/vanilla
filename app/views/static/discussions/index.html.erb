@@ -1,16 +1,6 @@
 <div class="row">
-  <div class="large-3 columns">
-    <div class="user-sidebar">
-      <a href="/#!/home">
-        <img ng-src="{{current_user.avatar.medium.url}}" width="{{current_user.avatar.medium.width}}" height="{{current_user.avatar.medium.height}}" />
-      </a>
-      <ul class="side-nav">
-        <li><a href="#"><i class="icon-group"></i> Friends</a></li>
-        <li><a href="#"><i class="icon-camera-retro"></i> Photos</a></li>
-        <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>
-      </ul>
-    </div>
-  </div>
+  <%= render 'user_sidebar' %>
+
   <div class="large-9 columns">
     Test
   </div>

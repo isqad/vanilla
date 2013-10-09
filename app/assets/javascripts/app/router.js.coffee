@@ -13,10 +13,16 @@ angular.module("vanilla").config [ "$routeProvider", ($routeProvider) ->
 
     templateUrl: "/static/users/index",
     controller: "UsersIndexCtrl"
+
   ).when("/users/:user_id",
 
     templateUrl: "/static/users/show",
     controller: "UsersShowCtrl"
+
+  ).when("/friends",
+
+    templateUrl: "/static/friendships/index"
+    controller: "FriendsCtrl"
 
   ).when("/discussions",
     templateUrl: "/static/discussions/index"

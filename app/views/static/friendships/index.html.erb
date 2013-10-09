@@ -1,0 +1,20 @@
+<div class="row">
+  <%= render 'user_sidebar' %>
+
+  <div class="large-9 columns">
+    <table class="friend-list">
+      <tr ng-repeat="user in friend_list">
+        <td ng-style="{width: user.avatar.small.width}">
+          <a ng-href="/#!/users/{{user.id}}" class="friend-list_user-pic th radius">
+            <img ng-src="{{user.avatar.small.url}}" width="{{user.avatar.small.width}}" height="{{user.avatar.small.height}}" alt="{{user.fullname}}">
+          </a>
+        </td>
+        <td>
+          <a ng-href="/#!/users/{{user.id}}" class="friend-list_user-info">
+            {{user.fullname}}
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

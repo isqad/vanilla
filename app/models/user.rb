@@ -19,13 +19,15 @@ class User < ActiveRecord::Base
   has_one :profile, :dependent => :destroy
 
   has_many :photos, :dependent => :destroy
+
   has_many :speakers, :dependent => :destroy
+  has_many :discussions, :through => :speakers, :order => 'created_at DESC'
 
   has_many :friendships, :foreign_key => 'owner_id'
   has_many :friends, :through => :friendships, :source => :friend
 
   has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :owner
 
   has_many :posts, :dependent => :destroy, :include => :author, :order => 'created_at DESC'
 
@@ -40,6 +42,13 @@ class User < ActiveRecord::Base
   scope :online, lambda { where('last_response_at > ?', 10.minutes.ago) }
   scope :without_me, lambda { |me| where('id <> ?', me.id) }
   scope :ordered, order('last_response_at IS NULL, last_response_at DESC')
+
+  scope :friend_list_for, lambda{|id|
+    joins('LEFT JOIN friendships a ON a.owner_id = users.id AND a.state = \'friends\'')
+    .joins('LEFT JOIN friendships b ON b.friend_id = users.id AND b.state = \'friends\'')
+    .where('a.friend_id = :id OR b.owner_id = :id', :id => id)
+    .uniq
+  }
 
   acts_as_authentic do |config|
     # Login via email
@@ -76,7 +85,7 @@ class User < ActiveRecord::Base
   end
 
   # Set default profile
-  def initialize(params={})
+  def initialize(params={}, *args)
     profile_set = params.has_key?(:profile) || params.has_key?("profile")
     params[:profile_attributes] = params.delete(:profile) if params.has_key?(:profile) && params[:profile].is_a?(Hash)
     super

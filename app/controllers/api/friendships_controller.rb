@@ -1,6 +1,13 @@
 class Api::FriendshipsController < ApiController
 
-  before_filter :find_user
+  before_filter :find_user, :except => [ :index ]
+
+  # GET /api/friendships
+  def index
+    @friends = User.friend_list_for(current_user.id)
+
+    respond_with @friends, :api_template => :user
+  end
 
   # POST /api/users/:user_id/friendships
   def create

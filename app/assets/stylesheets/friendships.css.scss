@@ -1,0 +1,17 @@
+.friend-list {
+  width: 100%;
+  border: none;
+
+  tr {
+    td {
+      vertical-align: top;
+      &:first-child {
+        vertical-align: middle;
+      }
+    }
+
+    &:nth-of-type(even) {
+      background: none;
+    }
+  }
+}
